@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{/fragment/head :: otherHead('./css/mypage-edit.css')}">
+
+</head>
+<body>
+  <!-- HEADER -->
+  <div th:replace="~{/fragment/header :: blogHeader ('블로그타이틀')}"></div>
+
+
+  <div class="mypage">
+    <div class="inner">
+      <div class="management">
+        <div class="title">블로그 관리</div>
+        <ul class="menu">
+          <li>
+            <a href="">글 쓰기</a>
+          </li>
+          <li>
+            <a href="">글 관리</a>
+          </li>
+          <li>
+            <a href="">카테고리 관리</a>
+          </li>
+          <li>
+            <a href="">블로그 관리</a>
+          </li>
+          <li>
+            <a href="">정보 수정</a>
+          </li>
+          <li>
+            <a href="">회원 탈퇴</a>
+          </li>
+        </ul>
+      </div>
+  
+      <div class="part">
+        <div class="first">
+          <div class="total">
+            <span>* 회원정보 수정</span>
+          </div>
+
+          <form action="" method="" id="editForm">
+            <div class="email">
+              <label for="email">이메일</label><br/>
+              <input type="text" name="email" id="email" value="test@test.com" disabled />
+            </div>
+            <div class="password">
+              <label for="password">비밀번호</label><br/>
+              <input type="password" name="password" id="password" />
+              <div class="passwordHelp">awefawefwaefwaef</div>
+            </div>
+            <div class="passwordConfirm">
+              <label for="passwordConfirm">비밀번호 확인</label><br/>
+              <input type="password" name="passwordConfirm" id="passwordConfirm" />
+              <div class="passwordConfirmHelp">awefwawefwaefaef</div>
+            </div>
+            <div class="name">
+              <label for="name">이름</label><br/>
+              <input type="text" name="name" id="name" />
+              <div class="nameHelp">awefwawefwaefaef</div>
+            </div>
+            <div class="phone">
+              <label for="phone">전화번호</label><br/>
+              <input type="text" name="phone" id="phone" />
+              <div class="phoneHelp">awefwaefawefwaef</div>
+            </div>
+            <div class="gender">
+              <span>성별</span>
+              <input type="radio" name="gender" id="male" value="male"/>
+              <label for="male">남자</label>
+              <input type="radio" name="gender" id="female" value="female"/>
+              <label for="female">여자</label>
+              <div class="genderHelp">awefwaefawefwaef</div>
+            </div>
+            <div class="btn-group">
+              <button type="button" class="btn edit">정보수정</button>
+            </div>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <!-- FOOTER -->
+  <div th:replace="~{/fragment/footer :: blogFooter}"></div>
+
+</body>
+</html>

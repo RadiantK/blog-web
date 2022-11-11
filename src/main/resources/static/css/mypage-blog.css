@@ -1,0 +1,83 @@
+.mypage {
+  margin-top: 110px;
+}
+.mypage .inner {
+  display: flex;
+}
+/* blog-management-menu */
+.mypage .management {
+  width: 20%;
+  margin-right: 30px;
+}
+.mypage .management .title {
+  font-size: 22px;
+  font-weight: 700;
+  text-align: center;
+  margin-top: 80px;
+}
+.mypage .management ul.menu {
+  width: 80%;
+  margin: 24px auto 24px;
+  text-align: center;
+  border: 1px solid #ccc;
+}
+.mypage .management ul.menu li {
+  margin-top: 16px; 
+}
+.mypage .management ul.menu li:last-child {
+  margin-bottom: 24px;
+}
+.mypage .management ul.menu li a {
+}
+.mypage .management ul.menu li a:hover {
+  font-weight: 700;
+}
+
+
+/* part */
+.mypage .part {
+  width: 80%;
+  margin-top: 80px;
+  height: 800px;
+}
+.mypage .part .total {
+  font-size: 24px;
+  font-weight: 700;
+  padding: 24px;
+}
+.mypage .part .first {
+  font-size: 20px;
+  margin-bottom: 80px;
+  padding: 24px;
+  border-top: 1px solid #333;
+}
+.mypage .part .first > div {
+  margin-top: 24px;
+}
+.mypage .part .first > div:first-child {
+  margin-top: 0;
+}
+.mypage .part .first .blog-title .name,
+.mypage .part .first .blog-nickname .nickname,
+.mypage .part .first .blog-description .description {
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+.mypage .part .first .blog-title input,
+.mypage .part .first .blog-nickname input {
+  margin-left: 12px;
+  width: 90%;
+  height: 32px;
+  padding:4px 8px;
+  font-size: 20px;
+  margin-bottom: 24px;
+}
+.mypage .part .first .blog-description textarea {
+  margin-left: 12px;
+  width: 90%;
+  height: 300px;
+  font-size: 20px;
+  resize: none;
+  margin-bottom: 24px;
+  padding: 8px;
+}

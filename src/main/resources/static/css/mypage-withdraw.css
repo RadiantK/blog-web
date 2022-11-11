@@ -1,0 +1,74 @@
+.mypage {
+  margin-top: 110px;
+}
+.mypage .inner {
+  display: flex;
+}
+/* blog-management-menu */
+.mypage .management {
+  width: 20%;
+  margin-right: 30px;
+}
+.mypage .management .title {
+  font-size: 22px;
+  font-weight: 700;
+  text-align: center;
+  margin-top: 80px;
+}
+.mypage .management ul.menu {
+  width: 80%;
+  margin: 24px auto 24px;
+  text-align: center;
+  border: 1px solid #ccc;
+}
+.mypage .management ul.menu li {
+  margin-top: 16px; 
+}
+.mypage .management ul.menu li:last-child {
+  margin-bottom: 24px;
+}
+.mypage .management ul.menu li a {
+}
+.mypage .management ul.menu li a:hover {
+  font-weight: 700;
+}
+
+
+/* part */
+.mypage .part {
+  width: 80%;
+  margin-top: 80px;
+  height: 800px;
+}
+.mypage .part .first {
+  padding: 24px;
+}
+.mypage .part .first .total {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.mypage .part .first .box {
+  border-top: 2px solid #333;
+  margin: 32px 0;
+}
+.mypage .part .first .box .description {
+  text-align: center;
+}
+.mypage .part .first .box .description .warn {
+  color: #ec2b2b;
+  font-size: 18px;
+  margin: 24px 0;
+}
+.mypage .part .first .box .description .content {
+  margin-bottom: 24px;
+}
+.mypage .part .first .box .description input {
+  position: relative;
+  transform: scale(1.4);
+  top: 3px;
+  margin-right: 4px;
+}
+.mypage .part .first .box .description button {
+  margin: 40px auto;
+}

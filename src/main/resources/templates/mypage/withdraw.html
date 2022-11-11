@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{/fragment/head :: otherHead('./css/mypage-withdraw.css')}">
+
+</head>
+<body>
+  <!-- HEADER -->
+  <div th:replace="~{/fragment/header :: blogHeader ('블로그타이틀')}"></div>
+
+
+  <div class="mypage">
+    <div class="inner">
+      <div class="management">
+        <div class="title">블로그 관리</div>
+        <ul class="menu">
+          <li>
+            <a href="">글 쓰기</a>
+          </li>
+          <li>
+            <a href="">글 관리</a>
+          </li>
+          <li>
+            <a href="">카테고리 관리</a>
+          </li>
+          <li>
+            <a href="">블로그 관리</a>
+          </li>
+          <li>
+            <a href="">정보 수정</a>
+          </li>
+          <li>
+            <a href="">회원 탈퇴</a>
+          </li>
+        </ul>
+      </div>
+  
+      <div class="part">
+        <div class="first">
+          <div class="total">
+            <span>* 회원 탈퇴</span>
+          </div>
+
+          <form action="" method="">
+            <div class="box">
+              <div class="description">
+                <p class="warn">주의하세요!</p>
+                <p class="content">
+                  탈퇴 시 회원님의 결제 내역을 포함하여 계정에 저장된 모든 정보가 영구적으로 삭제됩니다.<br>
+                  한 번 삭제된 정보는 복구가 불가능하며 재가입 시 계정이 완전히 초기화됩니다.
+                </p>
+                <div>
+                  <input type="checkbox"> 안내사항을 모두 확인했으며 이에 동의합니다.
+                </div>
+                <button type="button" class="btn">
+                  탈퇴하기
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <!-- FOOTER -->
+  <div th:replace="~{/fragment/footer :: blogFooter}"></div>
+
+</body>
+</html>

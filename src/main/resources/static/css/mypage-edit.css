@@ -1,0 +1,95 @@
+.mypage {
+  margin-top: 110px;
+}
+.mypage .inner {
+  display: flex;
+}
+/* blog-management-menu */
+.mypage .management {
+  width: 20%;
+  margin-right: 30px;
+}
+.mypage .management .title {
+  font-size: 22px;
+  font-weight: 700;
+  text-align: center;
+  margin-top: 80px;
+}
+.mypage .management ul.menu {
+  width: 80%;
+  margin: 24px auto 24px;
+  text-align: center;
+  border: 1px solid #ccc;
+}
+.mypage .management ul.menu li {
+  margin-top: 16px; 
+}
+.mypage .management ul.menu li:last-child {
+  margin-bottom: 24px;
+}
+.mypage .management ul.menu li a {
+}
+.mypage .management ul.menu li a:hover {
+  font-weight: 700;
+}
+
+
+/* part */
+.mypage .part {
+  width: 80%;
+  margin-top: 80px;
+}
+.mypage .part .first {
+  
+}
+.mypage .part .first .total {
+  padding: 24px;
+  font-size: 24px;
+  font-weight: 700;
+  border-bottom: 2px solid #333;
+}
+.mypage .part .first #editForm {
+  margin-top: 24px;
+}
+
+.mypage .part .first input[type="text"],
+.mypage .part .first input[type="password"] {
+  margin: 8px 0 0 12px;
+  width: 90%;
+  height: 40px;
+  font-size: 20px;
+  padding: 4px 8px;
+}
+.mypage .part .first .passwordHelp,
+.mypage .part .first .passwordConfirmHelp, 
+.mypage .part .first .nameHelp,
+.mypage .part .first .phoneHelp,
+.mypage .part .first .genderHelp {
+  margin-left: 12px;
+  color: #e43535;
+}
+.mypage .part .first .password,
+.mypage .part .first .passwordConfirm, 
+.mypage .part .first .name,
+.mypage .part .first .phone,
+.mypage .part .first .gender {
+  margin-top: 24px;
+}
+.mypage .part .first label {
+  font-size: 20px;
+  font-weight: 700;
+}
+.mypage .part .first .gender span {
+  display: block;
+  font-size: 20px;
+  font-weight: 700;
+}
+.mypage .part .first .gender input{
+  margin-left: 12px;
+  transform: scale(1.2);
+  position: relative;
+  top: 2px;
+}
+.mypage .part .first .edit {
+  margin: 40px auto;
+}

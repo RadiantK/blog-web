@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{/fragment/head :: otherHead('./css/mypage-blog.css')}">
+
+</head>
+<body>
+  <!-- HEADER -->
+  <div th:replace="~{/fragment/header :: blogHeader ('블로그타이틀')}"></div>
+
+
+  <div class="mypage">
+    <div class="inner">
+      <div class="management">
+        <div class="title">블로그 관리</div>
+        <ul class="menu">
+          <li>
+            <a href="">글 쓰기</a>
+          </li>
+          <li>
+            <a href="">글 관리</a>
+          </li>
+          <li>
+            <a href="">카테고리 관리</a>
+          </li>
+          <li>
+            <a href="">블로그 관리</a>
+          </li>
+          <li>
+            <a href="">정보 수정</a>
+          </li>
+          <li>
+            <a href="">회원 탈퇴</a>
+          </li>
+        </ul>
+      </div>
+  
+      <div class="part">
+        <div class="total">
+          <span>* 블로그 관리</span>
+        </div>
+        <div class="first">
+          
+
+          <form action="" method="">
+            <div class="blog-title">
+              <div class="name">* 블로그명 </div>
+              <input type="text" value="나만의블로그"/>
+            </div>
+            <div class="blog-nickname">
+              <div class="nickname">* 닉네임 </div>
+              <input type="text" value="RadiantK">
+            </div>
+            <div class="blog-description">
+              <div class="description">* 블로그 설명 </div>
+              <textarea name="" id="">블로그 설명 블로그 설명 블로그 설명 블로그 설명 블로그 설명 블로그 설명블로그 설명 블로그 설명 블로그 설명블로그 설명 블로그 설명 블로그 설명블로그 설명 블로그 설명 블로그 설명블로그 설명 블로그 설명 블로그 설명블로그 설명 블로그 설명 블로그 설명</textarea>
+            </div>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <!-- FOOTER -->
+  <div th:replace="~{/fragment/footer :: blogFooter}"></div>
+
+</body>
+</html>

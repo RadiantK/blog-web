@@ -1,0 +1,88 @@
+.mypage {
+  margin-top: 110px;
+}
+.mypage .inner {
+  display: flex;
+}
+/* blog-management-menu */
+.mypage .management {
+  width: 20%;
+  margin-right: 30px;
+}
+.mypage .management .title {
+  font-size: 22px;
+  font-weight: 700;
+  text-align: center;
+  margin-top: 80px;
+}
+.mypage .management ul.menu {
+  width: 80%;
+  margin: 24px auto 24px;
+  text-align: center;
+  border: 1px solid #ccc;
+}
+.mypage .management ul.menu li {
+  margin-top: 16px; 
+}
+.mypage .management ul.menu li:last-child {
+  margin-bottom: 24px;
+}
+.mypage .management ul.menu li a {
+}
+.mypage .management ul.menu li a:hover {
+  font-weight: 700;
+}
+
+
+/* part */
+.mypage .part {
+  width: 80%;
+  margin-top: 80px;
+}
+.mypage .part .first,
+.mypage .part .second {
+  border: 1px solid #ccc;
+  font-size: 20px;
+  margin-bottom: 80px;
+  padding: 24px;
+}
+.mypage .part .first > div {
+  margin-top: 24px;
+}
+.mypage .part .first > div:first-child {
+  margin-top: 0;
+}
+.mypage .part .first .blog-title .name,
+.mypage .part .first .blog-nickname .nickname,
+.mypage .part .first .blog-description .description {
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+.mypage .part .first .blog-title div:last-child,
+.mypage .part .first .blog-nickname div:last-child,
+.mypage .part .first .blog-description p {
+  margin-left: 12px;
+}
+
+.mypage .part .second .task {
+
+}
+.mypage .part .second .task .last-task {
+  font-weight: 700;
+}
+.mypage .part .second .task .list {
+  margin:12px 0 0 12px;
+  font-size: 18px;
+}
+.mypage .part .second .task .list a {
+  margin-bottom: 4px;
+  display: flex;
+}
+.mypage .part .second .task .list a:last-child {
+  margin-bottom: 0;
+}
+.mypage .part .second .task .list a .num {  
+  color: #1e1edd;
+  font-weight: 700;
+  margin-right: 24px;
+}
