@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{/fragment/head :: otherHead('./css/join-agree.css')}">
+
+</head>
+<body>
+  <!-- HEADER -->
+  <div th:replace="~{/fragment/header :: blogHeader ('블로그타이틀')}"></div>
+
+
+  <section class="same">
+
+    <div class="inner">
+      <div class="title">
+        <span>MyLog</span>
+      </div>
+
+      <div>
+        <div class="regist">
+          <div class="box active">약관동의</div>
+          <div class="box">정보입력</div>
+          <div class="box">가입완료</div>
+        </div>
+    
+        <div class="line">
+          <div class="step active"></div>
+          <div class="step"></div>
+          <div class="step"></div>
+        </div>
+      </div>
+
+      <div class="agree">
+        <div class="check">
+          <input type="checkbox" /><span> MyLog 이용약관 동의(*)</span>
+        </div>
+        <div>
+          <div th:replace="~{/fragment/the-same :: theSame}"></div>
+        </div>
+      </div>
+
+      <div class="button-group">
+        <button type="button" >취소</button>
+        <button type="button" >확인</button>
+      </div>
+    </div>
+
+    <AppFooter />
+  </section>
+
+  
+
+
+  <!-- FOOTER -->
+  <div th:replace="~{/fragment/footer :: blogFooter}"></div>
+
+</body>
+</html>

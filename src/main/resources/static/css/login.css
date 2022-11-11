@@ -1,0 +1,57 @@
+.login-page {
+  margin-top: 110px;
+  height: 780px;
+}
+.login-page .inner {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  margin: 50px auto 0;
+}
+.login-page .inner .title {
+  margin: 80px 0 40px;
+}
+.login-page .inner .title h2 {
+  font-size: 30px;
+  margin: 20px 0;
+  text-align: center;
+}
+.login-page .inner .login {
+  text-align: center;
+}
+.login-page .inner .login .id, .login-page .login .password {
+  margin-bottom: 40px;
+}
+.login-page .inner .login input {
+  width: 40%;
+  height: 50px;
+  padding: 5px;
+  font-size: 24px;
+  padding: 10px;
+}
+.login-page .inner .login .login-btn {
+  width: 42%;
+  height: 70px;
+  font-size: 22px;
+  background-color: #826D5E;
+  margin-bottom: 12px;
+  border: 2px solid #c2c2c2;
+  color: #fff;
+  transition: 0.4s;
+}
+.login-page .inner .searches {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 80px;
+  font-size: 18px;
+}
+.login-page .inner .searches .search {
+  margin-right: 15px;
+}
+.login-page .inner .searches .search a {
+  color: #826D5E;
+  text-decoration: none;
+}
+.login-page .inner .searches .search:last-child {
+  margin-right: 0;
+}

@@ -1,0 +1,125 @@
+.same .inner {
+  margin-top: 200px;
+}
+.same .inner .title {
+  text-align: center;
+  margin: 50px 0 40px;
+}
+.same .inner .title span {
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: 3px;
+}
+
+
+.same .regist {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 40px;
+}
+.same .regist .box {
+  font-size: 1.4rem;
+  width: 180px;
+  height: 60px;
+  margin-right: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 3px solid #777;
+  box-sizing: border-box;
+  position: relative;
+}
+.same .regist .box.active {
+  background-color: #826D5E;
+  color: #fff;
+}
+.same .regist .box:last-child {
+  margin-right: 0;
+}
+.same .line {
+  width: 700px;
+  height: 3px;
+  margin: 0 auto 100px;
+  background-color: #000;
+  position: relative;
+}
+.same .line .step {
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  border-radius: 50%;
+  border: 2px solid #826D5E;
+  background-color: #fff;
+}
+.same .line .step.active {
+  background-color: #826D5E;
+}
+.same .line .step:nth-child(1) {
+  top: -10px;
+  left: 80px;
+}
+.same .line .step:nth-child(2) {
+  top: -10px;
+  left: calc(50% - 10px);
+}
+.same .line .step:nth-child(3) {
+  top: -10px;
+  right: 80px;
+}
+
+
+.same .inner .agree {
+  width: 700px;
+  margin: 0 auto 60px;
+  letter-spacing: 1px;
+}
+.same .theSame {
+  height: 350px;
+  overflow: auto;
+  border: 2px solid #ccc;
+}
+.same .inner .agree .check {
+  display: flex;
+  margin-bottom: 15px;
+}
+.same .inner .agree .check input {
+  margin-right: 10px;
+  position: relative;
+  top: 2px;
+}
+.same .inner .agree .check span {
+  display: block;
+}
+.same .inner .agree div input {
+  display: block;
+  width: 20px;
+  height: 20px;
+}
+.same .inner .agree div span {
+  color: #aa5432;
+}
+.same .inner .button-group {
+  width: 700px;
+  display: flex;
+  margin: 0 auto;
+  padding: 0;
+}
+.same .inner .button-group button {
+  width: 100%;
+  height: 65px;
+  font-size: 1.5rem;
+  border: none;
+  margin-bottom: 100px;
+}
+.same .inner .button-group button:first-child {
+  margin-right: 15px;
+  background-color: #b1b1b1;
+  color: #fff;
+}
+.same .inner .button-group button:last-child {
+  background-color: #826D5E;
+  color: #fff;
+}
+.same .inner .button-group button:hover {
+  opacity: 0.9;
+}

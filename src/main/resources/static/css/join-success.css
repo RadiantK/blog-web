@@ -1,0 +1,120 @@
+.join-success {
+  margin-top: 200px;
+}
+.join-success .inner .title {
+  text-align: center;
+  margin: 50px 0 40px;
+}
+.join-success .inner .title span {
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: 3px;
+}
+
+.join-success .regist {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 40px;
+}
+.join-success .regist .box {
+  font-size: 1.4rem;
+  width: 180px;
+  height: 60px;
+  margin-right: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 3px solid #777;
+  box-sizing: border-box;
+  position: relative;
+}
+.join-success .regist .box.active {
+  background-color: #826D5E;
+  color: #fff;
+}
+.join-success .regist .box:last-child {
+  margin-right: 0;
+}
+
+.join-success .line {
+  width: 700px;
+  height: 3px;
+  margin: 0 auto 100px;
+  background-color: #000;
+  position: relative;
+}
+.join-success .line .step {
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  border-radius: 50%;
+  border: 2px solid #826D5E;
+  background-color: #fff;
+}
+.join-success .line .step.active {
+  background-color: #826D5E;
+}
+.join-success .line .step:nth-child(1) {
+  top: -10px;
+  left: 80px;
+}
+.join-success .line .step:nth-child(2) {
+  top: -10px;
+  left: calc(50% - 10px);
+}
+.join-success .line .step:nth-child(3) {
+  top: -10px;
+  right: 80px;
+}
+
+.join-success .inner .complete {
+  width: 700px;
+  height: 600px;
+  margin: 0 auto;
+  position: relative;
+}
+.join-success .inner .complete .material-icons {
+  font-size: 200px;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 40px;
+}
+
+.join-success .inner .complete .box p:nth-child(1) {
+  font-size: 48px;
+  text-align: center;
+  padding-top: 15px;
+}
+.join-success .inner .complete .box p:nth-child(2) {
+  font-size: 26px;
+  color: rgba(51, 51, 51, 0.7);
+  text-align: center;
+}
+.join-success .inner .complete .box .button-group {
+  display: flex;
+}
+.join-success .inner .complete .box .button-group a {
+  width: 100%;
+  height: 65px;
+  margin-top: 50px;
+  font-size: 24px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #645449;
+  background-color: #826D5E;
+  color: #fff;
+}
+.join-success .inner .complete .box .button-group a:first-child {
+  margin-right: 15px;
+  background-color: #b1b1b1;
+  color: #fff;
+}
+.join-success .inner .complete .box .button-group a:last-child {
+  background-color: #826D5E;
+  color: #fff;
+}
+.join-success .inner .complete .box .button-group a:hover {
+  opacity: 0.9;
+}

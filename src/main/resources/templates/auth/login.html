@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{/fragment/head :: otherHead('./css/login.css')}">
+
+</head>
+<body>
+  <!-- HEADER -->
+  <div th:replace="~{/fragment/header :: blogHeader ('블로그타이틀')}"></div>
+
+
+  <section class="login-page">
+    <div class="inner">
+
+      <div class="title">
+        <h2><strong>MyLog</strong> 회원 로그인</h2>
+      </div>
+      <form @submit.prevent>
+        <div class="login">
+          <div class="id">
+            <input type="text" name="id" id="id" placeholder="아이디를 입력하세요." v-model="loginId" />
+          </div>
+
+          <div class="password">
+            <input type="password" name="password" id="password" placeholder="비밀번호를 입력하세요." autocomplete="off" v-model="loginPwd"/>
+          </div>
+
+          <button type="button" class="login-btn" >로그인</button>
+        </div>
+      </form>
+
+      <div class="searches">
+        <div class="search">
+          <a href="">아이디 찾기</a>
+        </div>
+        <div class="search">
+          <a href="">비밀번호 찾기</a>
+        </div>
+        <div class="search">
+          <a href="">회원가입</a>
+        </div>
+      </div>
+      
+    </div>
+    <AppFooter/>
+  </section>
+
+
+  <!-- FOOTER -->
+  <div th:replace="~{/fragment/footer :: blogFooter}"></div>
+
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{/fragment/head :: otherHead('./css/join-main.css')}">
+
+</head>
+<body>
+  <!-- HEADER -->
+  <div th:replace="~{/fragment/header :: blogHeader ('블로그타이틀')}"></div>
+
+
+  <section class="join-all">
+
+    <div class="inner">
+      <div class="title">
+        <span>MyLog</span>
+      </div>
+
+      <div>
+        <div class="regist">
+          <div class="box">약관동의</div>
+          <div class="box active">정보입력</div>
+          <div class="box">가입완료</div>
+        </div>
+    
+        <div class="line">
+          <div class="step"></div>
+          <div class="step active"></div>
+          <div class="step"></div>
+        </div>
+      </div>
+
+      <form action="" method="">
+        <div class="join">
+          <div class="email">
+            <label for="emailInput">이메일</label>
+            <input type="text" class="emailInput" id="emailInput" placeholder="example@naver.com">
+            <button type="button" class="emailAuth">중복확인</button>
+            <div class="emailHelp help"></div>
+          </div>
+          <div class="pwd">
+            <label for="pwdInput">비밀번호</label>
+            <input type="password" class="pwdInput" id="pwdInput" placeholder="8~20 영문자, 숫자, 특수문자를 하나이상 사용" maxlength="20" autocomplete="off">
+            <div class="pwdHelp help">awefwaefwaefwea</div>
+          </div>
+          <div class="confirmPwd">
+            <label for="confirmPwdInput">비밀번호 확인</label>
+            <input type="password" class="confirmPwdInput" id="confirmPwdInput" placeholder="입력하신 비밀번호와 동일한 비밀번호를 입력하세요." maxlength="20" autocomplete="off">
+            <div class="confirmPwdHelp help"></div>
+          </div>
+          <div class="name">
+            <label for="nameInput">이름</label>
+            <input type="text" class="nameInput" id="nameInput" placeholder="1자 이상 한글만 사용" maxlength="8">
+            <div class="nameHelp help"></div>
+          </div>
+          <div class="gender">
+            <label>성별</label>
+            <input type="radio" name="gender" id="male" value="male" checked>
+            <label for="male">남성</label>
+            <input type="radio" name="gender" id="female" value="female">
+            <label for="female">여성</label>
+            <div class="genderHelp help"></div>
+          </div>
+          <div class="phone">
+            <label for="phoneInput">전화번호</label>
+            <input type="text" class="phoneInput" id="phoneInput" placeholder="ex)000-0000-0000" maxlength="13">
+            <div class="phoneHelp help"></div>
+          </div>
+          <div class="address">
+            <label for="addressInput">주소</label>
+            <input type="text" id="postcode" placeholder="우편번호" @click="sample6_execDaumPostcode()">
+            <button type="button" @click="execDaumPostcode()">우편번호 찾기</button>
+            <input type="text" id="address" placeholder="주소"><br>
+            <input type="text" id="detailAddress" placeholder="상세주소">
+            <div class="postcodeHelp help">sadfasdfasfasd</div>
+          </div>
+          <div class="join-btn">
+            <button type="button">취소</button>
+            <button type="button">회원가입</button>
+          </div>
+
+        </div>
+      </form>
+    </div>
+    
+  </section>
+
+
+  <!-- FOOTER -->
+  <div th:replace="~{/fragment/footer :: blogFooter}"></div>
+
+</body>
+</html>
