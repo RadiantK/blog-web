@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<body>
+
+<header th:fragment="blogHeader (title)">
+    <div class="inner">
+        <a href="/" class="logo">
+            <img src="./img/MyLog.png" alt="블로그로고"/>
+        </a>
+
+        <div class="title">
+            <a href="">
+                <span th:text="${title}">블로그타이틀</span>
+            </a>
+        </div>
+
+        <div class="sub-menu">
+            <ul class="menu">
+                <li>
+                    <a href="">로그인</a>
+                </li>
+                <li>
+                    <a href="">로그아웃</a>
+                </li>
+                <li>
+                    <a href="">회원가입</a>
+                </li>
+                <li>
+                    <a href="">MyPage</a>
+                </li>
+                <li>
+                    <a href="">MyBlog</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</header>
+
+</body>
+</html>
