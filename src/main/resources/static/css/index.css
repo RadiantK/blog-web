@@ -1,0 +1,109 @@
+/* 
+  main-slide 
+*/
+.main-slide {
+  margin-top: 110px;
+}
+.main-slide .inner {
+  height: 600px;
+}
+.main-slide .swiper-slide {
+  position: relative;
+}
+.main-slide .swiper .swiper-slide img {
+  width: 1100px;
+  height: 600px;
+}
+.main-slide .swiper-slide .content {
+  position: absolute;
+  font-size: 30px;
+  font-family: 'Jua', sans-serif;
+  color: #fff;
+  top: 50px;
+  right: 50px;
+}
+.main-slide .swiper-pagination {
+  bottom: 40px;
+  left: 0;
+  right: 0;
+}
+.main-slide .swiper-prev,
+.main-slide .swiper-next {
+  width: 42px;
+  height: 42px;
+  border: 2px solid #333;
+  border-radius: 50%;
+  position: absolute;
+  top: 300px;
+  z-index: 1;
+  cursor: pointer;
+  outline: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: .4s;
+}
+.main-slide .swiper-prev {
+  left: 50%;
+  margin-left: -480px;
+}
+.main-slide .swiper-next {
+  right: 50%;
+  margin-right: -480px;
+}
+.main-slide .swiper-prev:hover,
+.main-slide .swiper-next:hover {
+  background-color: #333;
+  color: #fff;
+}
+
+
+
+/* 
+  notice
+*/
+.notice {
+
+}
+.notice .inner {
+  margin-bottom: 50px;
+}
+.notice .topic {
+  margin: 50px 0 40px 20px;
+}
+.notice .topic a > span {
+  color: #333;
+  font-size : 40px;
+  font-weight: 700;
+}
+.notice .board {
+  
+}
+.notice .board .list {
+  display: flex;
+  padding: 5px;
+  height: 50px;
+  text-align: center;
+  align-items: center;
+  border-bottom: 1px solid #e1e1e1;
+}
+.notice .board .list:first-child {
+  font-size: 1.1rem;
+  font-weight: 700;
+  border-bottom: 1px solid #555;
+}
+.notice .board .list .number {
+  width: 10%;
+}
+.notice .board .list .writer {
+  width: 20%;
+}
+.notice .board .list .title {
+  width: 50%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.notice .board .list .date {
+  width: 20%;
+}

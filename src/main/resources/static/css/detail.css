@@ -1,0 +1,155 @@
+.detail {
+  margin-top: 110px;
+}
+.detail .inner {
+  padding-top: 50px;
+}
+.detail .head {
+
+}
+.detail .head .category {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+.detail .head .title {
+  font-size: 30px;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+.detail .head ul.info {
+  display: flex;
+  padding-bottom: 30px;
+  border-bottom: 2px solid #333;
+}
+.detail .head ul.info li {
+  opacity: .8;
+  position: relative;
+}
+.detail .head ul.info li::before {
+  content: "";
+  width: 1px;
+  height: 12px;
+  background-color: #222;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+}
+.detail .head ul.info li:first-child:before {
+  display: none;
+}
+.detail .head ul.info li span {
+  padding: 8px 16px;
+}
+.detail .head ul.info li:first-child span {
+  padding-left: 0;
+}
+
+.detail .inner > .content {
+  margin: 60px 0;
+}
+.detail .content .text {
+  font-size: 20px;
+  resize: none;
+  width: 100%;
+  box-sizing: border-box;
+  min-height: 400px;
+  padding: 20px;
+  overflow-y: hidden; /* prevents scroll bar flash */
+}
+
+.detail .prev-next {
+  border-top: 2px solid #d2d2d2;
+  border-bottom: 2px solid #d2d2d2;
+  margin-bottom: 40px;
+}
+.detail .prev-next .next {
+  margin: 16px 0;
+}
+.detail .prev-next .prev {
+  margin-bottom: 16px;
+}
+.detail .prev-next .next a,
+.detail .prev-next .prev a {
+  display: flex;
+  align-items: center;
+  color: #333;
+  font-size: 20px;
+}
+
+.detail .comment-list {
+  position: relative;
+}
+.detail .comment-list .comment {
+  margin-bottom: 10px;
+  border-bottom: 1px solid #ccc;
+}
+.detail .comment-list .comment:last-child {
+  border: none;
+}
+.detail .comment-list .comment .user {
+  display: flex;
+}
+.detail .comment-list .comment .user .writer {
+  margin-right: 24px;
+}
+.detail .comment-list .comment .change {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.detail .comment-list .comment .change a {
+  margin-right: 16px;
+  color: rgb(80, 43, 12);
+}
+.detail .comment-list .comment .change a:last-child {
+  margin-right: 0;
+}
+.detail .comment-list .comment .comm__content {
+  margin: 16px 0 24px;
+}
+
+.detail .page {
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  margin: 40px 0 60px;
+}
+.detail .page a {
+  color: #333;
+}
+.detail .page .material-icons {
+  padding: 5px;
+}
+.detail .page ul {
+  display: flex;
+}
+.detail .page ul li {
+  margin-right: 16px;
+  padding: 4px;
+}
+.detail .page ul li a {
+  padding: 4px;
+}
+.detail .page ul li:last-child {
+  margin-right: 0;
+}
+
+.detail .comment__title {
+  font-size: 20px;
+  font-weight: 700;
+}
+.detail .comment-regist {
+  display: flex;
+  margin-bottom: 80px;
+}
+.detail .comment-regist .comment__write {
+  resize: none;
+  width: 80%;
+  height: 160px;
+}
+.detail .comment-regist .comment__btn {
+  width: 20%;
+  font-size: 24px;
+}

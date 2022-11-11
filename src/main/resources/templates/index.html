@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{/fragment/head :: mainHead}"></head>
+<body>
+  <!-- HEADER -->
+  <div th:replace="~{/fragment/header :: blogHeader ('')}"></div>
+
+
+  <!-- interior 슬라이드 -->
+  <section class="main-slide">
+    <div class="inner">
+      <div class="swiper">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">
+            <img src="./img/main/slide1.jpg" alt="슬라이드 이미지" />
+            <span class="content">나만의 이야기를 만들어보세요</span>
+          </div>
+          <div class="swiper-slide">
+            <img src="./img/main/slide2.jpg" alt="슬라이드 이미지" />
+            <span class="content">자신의 지식을 공유해보세요</span>
+          </div>
+          <div class="swiper-slide">
+            <img src="./img/main/slide3.jpg" alt="슬라이드 이미지" />
+            <span class="content">나의 이야기를 공유해보세요</span>
+          </div>
+          <div class="swiper-slide">
+            <img src="./img/main/slide4.jpg" alt="슬라이드 이미지" />
+            <span class="content">나만의 이야기를 만들어보세요</span>
+          </div>
+          <div class="swiper-slide">
+            <img src="./img/main/slide5.jpg" alt="슬라이드 이미지" />
+            <span class="content">자신의 지식을 공유해보세요</span>
+          </div>
+          <div class="swiper-slide">
+            <img src="./img/main/slide6.jpg" alt="슬라이드 이미지" />
+            <span class="content">나의 이야기를 공유해보세요</span>
+          </div>
+        </div>
+
+        <div class="swiper-pagination"></div>
+        <div class="swiper-prev">
+          <div class="material-icons">arrow_back</div>
+        </div>
+        <div class="swiper-next">
+          <div class="material-icons">arrow_forward</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- notice -->
+  <section class="notice">
+    <div class="inner">
+      <div class="topic">
+        <a href="">
+          <span>공지사항</span>
+        </a>
+      </div>
+        
+      <div class="board">
+        <div class="list">
+          <div class="number">번호</div>
+          <div class="writer">작성자</div>
+          <div class="title">제목</div>
+          <div class="date">작성일</div>
+        </div>
+        <div class="list">
+          <div class="number">111</div>
+          <div class="writer">작성자</div>
+          <div class="title">제목입니다.</div>
+          <div class="date">2020-02-02</div>
+        </div>
+        <div class="list">
+          <div class="number">111</div>
+          <div class="writer">작성자</div>
+          <div class="title">제목입니다.</div>
+          <div class="date">2020-02-02</div>
+        </div>
+        <div class="list">
+          <div class="number">111</div>
+          <div class="writer">작성자</div>
+          <div class="title">제목입니다.</div>
+          <div class="date">2020-02-02</div>
+        </div>
+        <div class="list">
+          <div class="number">111</div>
+          <div class="writer">작성자</div>
+          <div class="title">제목입니다.</div>
+          <div class="date">2020-02-02</div>
+        </div>
+        <div class="list">
+          <div class="number">111</div>
+          <div class="writer">작성자</div>
+          <div class="title">제목입니다.</div>
+          <div class="date">2020-02-02</div>
+        </div>
+        <div class="list">
+          <div class="number">111</div>
+          <div class="writer">작성자</div>
+          <div class="title">제목입니다.</div>
+          <div class="date">2020-02-02</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- FOOTER -->
+  <div th:replace="~{/fragment/footer :: blogFooter}"></div>
+
+</body>
+</html>

@@ -1,0 +1,106 @@
+.post {
+  margin-top: 110px;
+}
+.post .inner {
+  padding-top: 50px;
+}
+.post .head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 16px;
+  border-bottom: 2px solid #333;
+}
+.post .head .total {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.post .head .search {
+  position: relative;
+}
+
+.post .head .search input {
+  width: 250px;
+  height: 24px;
+  font-size: 20px;
+  padding: 4px 40px 4px 8px;
+}
+
+.post .head .search button {
+  position: absolute;
+  border: none;
+  top: 6px;
+  right: 5px;
+}
+.post .head .search button > span {
+  cursor: pointer;
+}
+.post .board-wrap .board {
+  padding: 40px 0;
+}
+.post .board-wrap .board > a {
+  height: 230px;
+  display: flex;
+  color: #333;
+  transition: .3s;
+  opacity: .9;
+}
+.post .board-wrap .board > a:hover {
+  opacity: 1;
+}
+.post .board-wrap .board .list {
+  width: 70%;
+}
+.post .board-wrap .board .list .title {
+  display: flex;
+  font-size: 20px;
+  font-weight: 700;
+}
+.post .board-wrap .board .list .title > div {
+  margin-right: 40px;
+}
+.post .board-wrap .board .list .title > div:last-child {
+  opacity: .5;
+  margin-right: 0;
+}
+.post .board-wrap .board .list .content {
+  margin-top: 10px;
+}
+.post .board-wrap .board .board-img {
+  width: 30%;
+  padding-right: 0;
+}
+.post .board-wrap .board .board-img .post-img {
+  height: 100%;
+  background-image: url(../img/main/slide2.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.post .page {
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  margin: 40px 0 60px;
+}
+.post .page a {
+  color: #333;
+}
+.post .page .material-icons {
+  padding: 5px;
+}
+.post .page ul {
+  display: flex;
+}
+.post .page ul li {
+  margin-right: 16px;
+  padding: 4px;
+}
+.post .page ul li a {
+  padding: 4px;
+}
+.post .page ul li:last-child {
+  margin-right: 0;
+}

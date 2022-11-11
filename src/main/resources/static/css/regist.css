@@ -1,0 +1,92 @@
+.detail {
+  margin-top: 110px;
+}
+.detail .inner {
+  padding-top: 50px;
+}
+.detail .head {
+
+}
+.detail .head .category {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+.detail .head .category .choose {
+  width: 130px;
+  height: 24px;
+}
+.detail .head .title {
+  margin-bottom: 5px;
+}
+.detail .head .title > input {
+  width: 100%;
+  height: 50px;
+  margin-top: 10px;
+  padding: 5px;
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 5px;
+  border: none;
+}
+.detail .head ul.info {
+  display: flex;
+  padding-bottom: 30px;
+  border-bottom: 2px solid #333;
+}
+.detail .head ul.info li {
+  opacity: .8;
+  position: relative;
+}
+.detail .head ul.info li::before {
+  content: "";
+  width: 1px;
+  height: 12px;
+  background-color: #222;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+}
+.detail .head ul.info li:first-child:before {
+  display: none;
+}
+.detail .head ul.info li span {
+  padding: 8px 16px;
+}
+.detail .head ul.info li:first-child span {
+  padding-left: 0;
+}
+
+.detail .inner > .content {
+  margin: 60px 0;
+}
+.detail .content .text {
+
+}
+.ck-editor__editable {
+	min-height: 1000px;
+  margin-bottom: 200px;
+}
+
+.detail .change {
+  position: fixed;
+  background-color: #fff;
+  bottom: 0;
+}
+.detail .change .btn-group {
+  width: 1100px;
+  display: flex;
+  justify-content: flex-end;
+  margin: 30px 0;
+}
+.detail .change .btn-group button {
+  font-size: 20px;
+  width: 120px;
+  height: 50px;
+  margin-right: 20px;
+  border: 2px solid #333;
+}
+.detail .change .btn-group button:last-child {
+  margin-right: 0;
+}

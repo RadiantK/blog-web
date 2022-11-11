@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{/fragment/head :: otherHead('./css/myblog.css')}">
+
+</head>
+<body>
+  <!-- HEADER -->
+  <div th:replace="~{/fragment/header :: blogHeader ('블로그타이틀')}"></div>
+
+
+  <!-- post -->
+  <section class="post">
+    <div class="inner">
+      <div class="head">
+        <div class="total">
+          <span>전체 글</span>
+        </div>
+        
+        <div class="search">
+          <form action="">
+            <input type="text" />
+            <button>
+              <span class="material-icons">search</span>
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <div class="board-wrap">
+        <div class="board">
+          <a href="javascript:void(0)">
+            <div class="list">
+              <div class="title">
+                <div>[Thymeleaf] 타임리프 정리</div>
+                <div>2020-02-02</div>
+              </div>
+              <div class="content">
+                aewfwafwaefwafwafwaaewfwafwaefwafwafwa
+                aewfwafwaefwafwafwaaewfwafwaefwafwafwa<br/>
+                aewfwafwaefwafwafwaaewfwafwaefwafwafwa
+                aewfwafwaefwafwafwaaewfwafwaefwafwafwa
+              </div>
+            </div>
+    
+            <div class="board-img">
+              <div class="post-img"></div>
+            </div>
+          </a>
+        </div>
+
+        <div class="board">
+          <a href="javascript:void(0)">
+            <div class="list">
+              <div class="title">
+                <div>[Thymeleaf] 타임리프 정리</div>
+                <div>2020-02-02</div>
+              </div>
+              <div class="content">
+                aewfwafwaefwafwafwaaewfwafwaefwafwafwa
+                aewfwafwaefwafwafwaaewfwafwaefwafwafwa<br/>
+                aewfwafwaefwafwafwaaewfwafwaefwafwafwa
+                aewfwafwaefwafwafwaaewfwafwaefwafwafwa
+              </div>
+            </div>
+    
+            <div class="board-img">
+              <div class="post-img"></div>
+            </div>
+          </a>
+        </div>
+
+        <div class="board">
+          <a href="javascript:void(0)">
+            <div class="list">
+              <div class="title">
+                <div>[Thymeleaf] 타임리프 정리</div>
+                <div>2020-02-02</div>
+              </div>
+              <div class="content">
+                aewfwafwaefwafwafwaaewfwafwaefwafwafwa
+                aewfwafwaefwafwafwaaewfwafwaefwafwafwa<br/>
+                aewfwafwaefwafwafwaaewfwafwaefwafwafwa
+                aewfwafwaefwafwafwaaewfwafwaefwafwafwa
+              </div>
+            </div>
+    
+            <div class="board-img">
+              <div class="post-img"></div>
+            </div>
+          </a>
+        </div>
+
+        <div class="board">
+          <a href="javascript:void(0)">
+            <div class="list">
+              <div class="title">
+                <div>[Thymeleaf] 타임리프 정리</div>
+                <div>2020-02-02</div>
+              </div>
+              <div class="content">
+                aewfwafwaefwafwafwaaewfwafwaefwafwafwa
+                aewfwafwaefwafwafwaaewfwafwaefwafwafwa<br/>
+                aewfwafwaefwafwafwaaewfwafwaefwafwafwa
+                aewfwafwaefwafwafwaaewfwafwaefwafwafwa
+              </div>
+            </div>
+    
+            <div class="board-img">
+              <div class="post-img"></div>
+            </div>
+          </a>
+        </div>
+
+        <div class="board">
+          <a href="javascript:void(0)">
+            <div class="list">
+              <div class="title">
+                <div>[Thymeleaf] 타임리프 정리</div>
+                <div>2020-02-02</div>
+              </div>
+              <div class="content">
+                aewfwafwaefwafwafwaaewfwafwaefwafwafwa
+                aewfwafwaefwafwafwaaewfwafwaefwafwafwa<br/>
+                aewfwafwaefwafwafwaaewfwafwaefwafwafwa
+                aewfwafwaefwafwafwaaewfwafwaefwafwafwa
+              </div>
+            </div>
+    
+            <div class="board-img">
+              <div class="post-img"></div>
+            </div>
+          </a>
+        </div>
+
+      </div>
+
+      <div class="page">
+        <div class="material-icons">
+          <a href="">first_page</a>
+        </div>
+        <ul>
+          <li>
+            <a href="javascript:void(0)">1</a>
+          </li>
+          <li>
+            <a href="javascript:void(0)">2</a>
+          </li>
+          <li>
+            <a href="javascript:void(0)">3</a>
+          </li>
+          <li>
+            <a href="javascript:void(0)">4</a>
+          </li>
+          <li>
+            <a href="javascript:void(0)">5</a>
+          </li>
+        </ul>
+        <div class="material-icons">
+          <a href="">last_page</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- FOOTER -->
+  <div th:replace="~{/fragment/footer :: blogFooter}"></div>
+
+</body>
+</html>

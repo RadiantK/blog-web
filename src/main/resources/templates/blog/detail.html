@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{/fragment/head :: otherHead('./css/detail.css')}">
+
+</head>
+<body>
+  <!-- HEADER -->
+  <div th:replace="~{/fragment/header :: blogHeader ('블로그타이틀')}"></div>
+
+
+  <!-- post -->
+  <section class="detail">
+    <div class="inner">
+      <div class="head">
+        <div class="category">
+          <span>Spring</span>
+        </div>
+        <div class="title">
+          <span>[Thymeleaf] 타임리프 정리</span>
+        </div>
+        <ul class="info">
+          <li class="writer">
+            <span>RadiantK</span>
+          </li>
+          <li class="date">
+            <span>2022. 9. 24. 02:41</span>
+          </li>
+          <li>
+            <span><a herf="javascript:void(0)">수정</a></span>
+          </li>
+          <li>
+            <span><a herf="javascript:void(0)">삭제</a></span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="content">
+        <p>
+          내용내용내용내용내용내용내용내용내용내용내용내용
+          내용내용내용내용내용내용내용내용내용내용내용내용
+          내용내용내용내용내용내용내용내용내용내용내용내용
+          내용내용내용내용내용내용내용내용내용내용내용내용
+          내용내용내용내용내용내용내용내용내용내용내용내용
+          내용내용내용내용내용내용내용내용내용내용내용내용
+        </p>
+      </div>
+
+      <div class="prev-next">
+        <div class="next">
+          <a href="">
+            <i class="material-icons">
+              keyboard_arrow_up
+            </i>
+            <p>다음 글 : <span>다음 글 입니다.</span></p>
+          </a>
+        </div>
+        <div class="prev">
+          <a href="">
+            <i class="material-icons">
+              keyboard_arrow_down
+            </i>
+            <p>이전 글 : <span>이전 글 입니다.</span></p>
+          </a>
+        </div>
+      </div>
+
+      <div class="comment-list">
+        <div class="comment">
+          <div class="user">
+            <div class="writer">
+              작성자 : <span>감나무</span>
+            </div>
+            <div class="date">
+              작성일 : <span>2020-02-02 12:15:08</span>
+            </div>
+          </div>
+          
+          <div class="change">
+            <a href="">수정</a>
+            <a href="">삭제</a>
+          </div>
+  
+          <div class="comm__content">
+            <p>
+              내용내용내용내용내용내용내용내용내용내용내용내용
+              내용내용내용내용내용내용내용내용내용내용내용내용
+              내용내용내용내용내용내용내용내용내용내용내용내용
+              내용내용내용내용내용내용내용내용내용내용내용내용
+              내용내용내용내용내용내용내용내용내용내용내용내용
+              내용내용내용내용내용내용내용내용내용내용내용내용
+            </p>
+          </div>
+        </div>
+        <div class="comment">
+          <div class="user">
+            <div class="writer">
+              작성자 : <span>감나무</span>
+            </div>
+            <div class="date">
+              작성일 : <span>2020-02-02 12:15:08</span>
+            </div>
+          </div>
+          
+          <div class="change">
+            <a href="">수정</a>
+            <a href="">삭제</a>
+          </div>
+  
+          <div class="comm__content">
+            <p>
+              내용내용내용내용내용내용내용내용내용내용내용내용
+              내용내용내용내용내용내용내용내용내용내용내용내용
+              내용내용내용내용내용내용내용내용내용내용내용내용
+              내용내용내용내용내용내용내용내용내용내용내용내용
+              내용내용내용내용내용내용내용내용내용내용내용내용
+              내용내용내용내용내용내용내용내용내용내용내용내용
+            </p>
+          </div>
+        </div>
+
+        <div class="page">
+          <div class="material-icons">
+            <a href="">first_page</a>
+          </div>
+          <ul>
+            <li>
+              <a href="javascript:void(0)">1</a>
+            </li>
+            <li>
+              <a href="javascript:void(0)">2</a>
+            </li>
+            <li>
+              <a href="javascript:void(0)">3</a>
+            </li>
+            <li>
+              <a href="javascript:void(0)">4</a>
+            </li>
+            <li>
+              <a href="javascript:void(0)">5</a>
+            </li>
+          </ul>
+          <div class="material-icons">
+            <a href="">last_page</a>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="comment__title">댓글 쓰기</div>
+      <div class="comment-regist">
+        <textarea class="comment__write"></textarea>
+        <button class="comment__btn">등록</button>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- FOOTER -->
+  <div th:replace="~{/fragment/footer :: blogFooter}"></div>
+
+</body>
+</html>
