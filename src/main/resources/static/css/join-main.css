@@ -109,12 +109,12 @@
 .join-all .inner form .join .authentication {
   display: none;
 }
-.join-all .inner form .join .email input,
- .join-all .join .authentication input {
+.join-all .inner form .join .emailInput input,
+.join-all .join .authentication input {
   width: 50%;
-  margin-right: 13px;
+  margin-right: 12px;
 }
-.join-all form .join .email button,
+.join-all form .join .emailInput button,
  .join-all form .join .authentication button {
   width: 23%;
   height: 73px;
@@ -124,9 +124,12 @@
   position: absolute;
   font-size: 20px;
   top: 0;
-  right: 0;
+  right: 6px;
 }
-.join-all .inner form .join .gender input {
+.join-all .inner form .join .genderInput label{
+  margin-bottom: 10px;
+}
+.join-all .inner form .join .genderInput input {
   margin-right: 20px;
   width: 15px;
   height: 15px;
@@ -143,23 +146,23 @@
   margin-bottom: 10px;
 }
 .join-all .inner form .join .address button {
-  width: 30%;
+  width: 29%;
   height: 73px;
   border: none;
   background-color: #826D5E;
   color: #fff;
   font-size: 20px;
 }
-.join-all .inner form .join .address input#address {
+.join-all .inner form .join .address input#street {
   margin-left: 144px;
 }
-.join-all .inner form .join .address #detailAddress {
+.join-all .inner form .join .address #detail {
   margin-left: 144px;
 }
 .join-all .inner form .join .join-btn {
   width: 700px;
   display: flex;
-  margin: 40px auto 100px;
+  margin: 80px auto 100px;
   padding: 0;
 }
 .join-all .inner form .join .join-btn button {

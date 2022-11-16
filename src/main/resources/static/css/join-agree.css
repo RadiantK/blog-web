@@ -110,6 +110,7 @@
   font-size: 1.5rem;
   border: none;
   margin-bottom: 100px;
+  cursor: pointer;
 }
 .same .inner .button-group button:first-child {
   margin-right: 15px;
