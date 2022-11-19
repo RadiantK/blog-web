@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        section .not-found {
+            width: 600px;
+            height: 600px;
+            position: relative;
+            top: 100px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        section .not-found img {
+            width: 400px;
+            height: 400px;
+        }
+        section .not-found .title{
+            font-size: 40px;
+            font-weight: 700;
+            margin-bottom: 40px;
+        }
+        section .not-found .message {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 40px;
+        }
+        section .not-found a {
+            font-size: 24px;
+            text-decoration: none;
+            color: #ad2df7;
+        }
+    </style>
+</head>
+<body>
+<section>
+    <div class="not-found">
+        <img src="./images/MyLog.png" th:src="@{/img/MyLog.png}" alt="">
+        <p class="title">404 NOT FOUND</p>
+        <p class="message">요청하신 페이지를 찾을 수 없습니다.</p>
+        <a href="/templates/index.html" th:href="@{/}">메인페이지로 이동</a>
+    </div>
+</section>
+</body>
+</html>
