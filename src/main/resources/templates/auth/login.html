@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="~{/fragment/head :: otherHead('./css/login.css')}">
+<head th:replace="~{/fragment/head :: otherHead('/css/login.css')}">
 
 </head>
 <body>
@@ -14,29 +14,34 @@
       <div class="title">
         <h2><strong>MyLog</strong> 회원 로그인</h2>
       </div>
-      <form @submit.prevent>
+      <form action="/user/login" th:action="@{/user/login}" method="post" th:object="${memberLoginRequest}">
         <div class="login">
-          <div class="id">
-            <input type="text" name="id" id="id" placeholder="아이디를 입력하세요." v-model="loginId" />
+          <div class="email">
+            <input type="text" name="email" id="email" th:field="*{email}" placeholder="아이디를 입력하세요." />
           </div>
 
           <div class="password">
-            <input type="password" name="password" id="password" placeholder="비밀번호를 입력하세요." autocomplete="off" v-model="loginPwd"/>
+            <input type="password" name="password" id="password" th:field="*{password}" placeholder="비밀번호를 입력하세요." autocomplete="off" />
           </div>
-
-          <button type="button" class="login-btn" >로그인</button>
+          <div th:if="${#fields.hasGlobalErrors()}">
+            <div class="loginHelp" th:each="error : ${#fields.globalErrors()}" th:text="${error}">
+              아이디 또는 비밀번호가 일치하지 않습니다.
+            </div>
+          </div>
+          <button class="login-btn" >로그인</button>
         </div>
+
       </form>
 
       <div class="searches">
         <div class="search">
-          <a href="">아이디 찾기</a>
+          <a href="/templates/auth/find-id.html" th:href="@{/user/help/id}">아이디 찾기</a>
         </div>
         <div class="search">
-          <a href="">비밀번호 찾기</a>
+          <a href="/templates/auth/find-pwd.html" th:href="@{/user/help/pwd}">비밀번호 찾기</a>
         </div>
         <div class="search">
-          <a href="">회원가입</a>
+          <a href="/templates/auth/join-agree.html" th:href="@{/user/join/agree}">회원가입</a>
         </div>
       </div>
       
