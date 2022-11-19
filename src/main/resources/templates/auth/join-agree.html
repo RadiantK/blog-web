@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="~{/fragment/head :: otherHead('./css/join-agree.css')}">
+<head th:replace="~{/fragment/head :: otherHead('/css/join-agree.css')}">
 
 </head>
 <body>
@@ -31,7 +31,7 @@
 
       <div class="agree">
         <div class="check">
-          <input type="checkbox" /><span> MyLog 이용약관 동의(*)</span>
+          <input type="checkbox" id="agree"/><span> MyLog 이용약관 동의(*)</span>
         </div>
         <div>
           <div th:replace="~{/fragment/the-same :: theSame}"></div>
@@ -39,19 +39,31 @@
       </div>
 
       <div class="button-group">
-        <button type="button" >취소</button>
-        <button type="button" >확인</button>
+        <button type="button" th:onclick="history.back()" >취소</button>
+        <button type="button" class="checkBtn">확인</button>
       </div>
     </div>
 
     <AppFooter />
   </section>
 
-  
-
-
   <!-- FOOTER -->
   <div th:replace="~{/fragment/footer :: blogFooter}"></div>
+
+  <script>
+    const inputEl = document.querySelector('#agree');
+    const checkBtnEl = document.querySelector('.checkBtn');
+
+    checkBtnEl.addEventListener('click', function() {
+      let checked = inputEl.checked;
+      console.log(checked);
+      if (checked == false) {
+        alert('이용약관에 동의해주세요.');
+        return;
+      }
+      location.href = "/mylog.com/user/join/main";
+    });
+  </script>
 
 </body>
 </html>

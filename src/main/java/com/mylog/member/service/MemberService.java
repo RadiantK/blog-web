@@ -8,6 +8,8 @@ import com.mylog.member.dto.MemberJoinRequest;
 import com.mylog.member.exception.DuplicatedMemberException;
 import com.mylog.member.exception.MemberNotFoundException;
 import com.mylog.member.repository.MemberRepository;
+import com.mylog.post.domain.Category;
+import com.mylog.post.repository.CategoryRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -23,16 +25,13 @@ public class MemberService {
 
     public Member findMember(String email) {
         Member member = memberRepository.findByEmailAndEnabled(email, 1).orElse(null);
-        existsByMember(member);
 
         return member;
     }
 
-    public Member saveMember(MemberJoinRequest request) {
+    public Member join(MemberJoinRequest request) {
         Member member = memberRepository.findByEmailAndEnabled(request.getEmail(), 1).orElse(null);
-        if (member != null) {
-            throw new DuplicatedMemberException();
-        }
+        checkDuplicationMember(member);
 
         Member newMember = Member.builder()
                 .email(request.getEmail())
@@ -52,8 +51,8 @@ public class MemberService {
         Member member = memberRepository.findByEmailAndEnabled(request.getEmail(), 1).orElse(null);
         existsByMember(member);
 
-        member.editMember(passwordEncoder.encode(
-                request.getPassword()),
+        member.editMember(
+                passwordEncoder.encode(request.getPassword()),
                 request.getName(),
                 request.getPhone(),
                 request.getGender());
@@ -66,8 +65,10 @@ public class MemberService {
         member.removeMember();
     }
 
-    private boolean isMatchPassword(String rawPwd, String encodePwd) {
-        return passwordEncoder.matches(rawPwd, encodePwd);
+    private void checkDuplicationMember(Member member) {
+        if (member != null) {
+            throw new DuplicatedMemberException();
+        }
     }
 
     private void existsByMember(Member member) {

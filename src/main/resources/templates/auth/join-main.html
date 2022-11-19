@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="~{/fragment/head :: otherHead('./css/join-main.css')}">
+<head th:replace="~{/fragment/head :: joinMainHead('/css/join-main.css')}">
 
 </head>
 <body>
@@ -9,7 +9,6 @@
 
 
   <section class="join-all">
-
     <div class="inner">
       <div class="title">
         <span>MyLog</span>
@@ -29,64 +28,125 @@
         </div>
       </div>
 
-      <form action="" method="">
+      <form action="" th:action="@{/user/join/main}" method="post" th:object="${memberJoinRequest}">
         <div class="join">
-          <div class="email">
-            <label for="emailInput">이메일</label>
-            <input type="text" class="emailInput" id="emailInput" placeholder="example@naver.com">
+          <div class="emailInput">
+            <label for="email">이메일</label>
+            <input type="text" class="email" id="email" th:field="*{email}" placeholder="example@naver.com" maxlength="30">
             <button type="button" class="emailAuth">중복확인</button>
-            <div class="emailHelp help"></div>
+            <div class="emailHelp help" th:errors="*{email}">이메일 오류</div>
           </div>
           <div class="pwd">
-            <label for="pwdInput">비밀번호</label>
-            <input type="password" class="pwdInput" id="pwdInput" placeholder="8~20 영문자, 숫자, 특수문자를 하나이상 사용" maxlength="20" autocomplete="off">
-            <div class="pwdHelp help">awefwaefwaefwea</div>
+            <label for="password">비밀번호</label>
+            <input type="password" class="password" id="password" th:field="*{password}" placeholder="8~20 영문자, 숫자, 특수문자를 하나이상 사용" maxlength="20" autocomplete="off">
+            <div class="pwdHelp help" th:errors="*{password}">비밀번호 오류</div>
           </div>
           <div class="confirmPwd">
-            <label for="confirmPwdInput">비밀번호 확인</label>
-            <input type="password" class="confirmPwdInput" id="confirmPwdInput" placeholder="입력하신 비밀번호와 동일한 비밀번호를 입력하세요." maxlength="20" autocomplete="off">
-            <div class="confirmPwdHelp help"></div>
+            <label for="passwordConfirm">비밀번호 확인</label>
+            <input type="password" class="passwordConfirm" id="passwordConfirm" th:field="*{passwordConfirm}" placeholder="입력하신 비밀번호와 동일한 비밀번호를 입력하세요." maxlength="20" autocomplete="off">
+            <div class="confirmPwdHelp help" th:errors="*{passwordConfirm}">비밀번호 확인 오류</div>
           </div>
-          <div class="name">
-            <label for="nameInput">이름</label>
-            <input type="text" class="nameInput" id="nameInput" placeholder="1자 이상 한글만 사용" maxlength="8">
-            <div class="nameHelp help"></div>
+          <div class="nameInput">
+            <label for="name">이름</label>
+            <input type="text" class="name" id="name" th:field="*{name}" placeholder="2자 이상 한글만 사용" maxlength="10">
+            <div class="nameHelp help" th:errors="*{name}"></div>
           </div>
-          <div class="gender">
+          <div class="genderInput">
             <label>성별</label>
-            <input type="radio" name="gender" id="male" value="male" checked>
-            <label for="male">남성</label>
-            <input type="radio" name="gender" id="female" value="female">
-            <label for="female">여성</label>
-            <div class="genderHelp help"></div>
+            <span th:each="type : ${genders}">
+              <input type="radio" name="gender" th:field="*{gender}" value="male" th:value="${type.name()}" th:checked="${type.name() eq 'MALE'}">
+              <label th:for="${#ids.prev('gender')}" th:text="${type.description}">남자</label>
+              <!--<input type="radio" name="gender" id="male" value="male" checked>
+              <label for="male">남성</label>
+              <input type="radio" name="gender" id="female" value="female">
+              <label for="female">여성</label> -->
+            </span>
+            <div class="genderHelp help" th:errors="*{gender}">성별 오류</div>
           </div>
           <div class="phone">
-            <label for="phoneInput">전화번호</label>
-            <input type="text" class="phoneInput" id="phoneInput" placeholder="ex)000-0000-0000" maxlength="13">
-            <div class="phoneHelp help"></div>
+            <label for="phone">전화번호</label>
+            <input type="text" class="phone" id="phone" th:field="*{phone}" placeholder="ex)000-0000-0000" maxlength="13">
+            <div class="phoneHelp help" th:errors="*{phone}"></div>
           </div>
           <div class="address">
-            <label for="addressInput">주소</label>
-            <input type="text" id="postcode" placeholder="우편번호" @click="sample6_execDaumPostcode()">
-            <button type="button" @click="execDaumPostcode()">우편번호 찾기</button>
-            <input type="text" id="address" placeholder="주소"><br>
-            <input type="text" id="detailAddress" placeholder="상세주소">
-            <div class="postcodeHelp help">sadfasdfasfasd</div>
+            <label for="postcode">주소</label>
+            <input type="text" id="postcode" placeholder="우편번호" th:field="*{postcode}" >
+            <button type="button" th:onclick="daumPostcode()">우편번호 찾기</button>
+            <input type="text" id="street" th:field="*{street}" placeholder="주소"/><br>
+            <input type="text" id="detail" th:field="*{detail}" placeholder="상세주소">
+            <div class="postcodeHelp help" th:errors="*{postcode}"></div>
+            <div class="postcodeHelp help" th:errors="*{street}"></div>
           </div>
           <div class="join-btn">
             <button type="button">취소</button>
-            <button type="button">회원가입</button>
+            <button type="submit">회원가입</button>
           </div>
-
         </div>
       </form>
     </div>
-    
   </section>
 
 
   <!-- FOOTER -->
   <div th:replace="~{/fragment/footer :: blogFooter}"></div>
+
+
+  <script>
+    function daumPostcode() {
+      new daum.Postcode({
+        oncomplete: function(data) {
+          // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+          // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+          // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+          var addr = ''; // 주소 변수
+
+          //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+          if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+            addr = data.roadAddress;
+          } else { // 사용자가 지번 주소를 선택했을 경우(J)
+            addr = data.jibunAddress;
+          }
+
+          // 우편번호와 주소 정보를 해당 필드에 넣는다.
+          document.getElementById('postcode').value = data.zonecode;
+          document.getElementById("street").value = addr;
+          // 커서를 상세주소 필드로 이동한다.
+          document.getElementById("detail").focus();
+        }
+      }).open();
+    }
+
+    let orgEmail = document.querySelector('#email');
+    let editEmail = '';
+
+    const formEl = document.querySelector('form');
+    const emailAuthBtn = document.querySelector('.emailAuth');
+
+    emailAuthBtn.addEventListener('click', function() {
+      fetch("http://localhost:8080/mylog.com/api/join/email/" + orgEmail.value)
+              .then((response) => response.json())
+              .then((data) => {
+                if (data.result == 'use') {
+                  alert("사용 가능한 이메일 입니다.");
+                  editEmail = orgEmail.value;
+                } else {
+                  alert("중복된 이메일이 존재합니다.");
+                }
+              });
+    });
+
+    formEl.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      if (orgEmail.value !== editEmail) {
+        alert('아이디 중복확인을 진행해주세요..');
+        return;
+      }
+
+      formEl.submit();
+    });
+  </script>
 
 </body>
 </html>
