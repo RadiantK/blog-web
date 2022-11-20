@@ -73,12 +73,12 @@
 .mypage .second .category-list .manage .modify {
   margin-right: 12px;
 }
-.mypage .second .category-list .manage > div button {
+.mypage .second .category-list .manage > div a {
   color: #333;
   font-size: 20px;
   border: none;
 }
-.mypage .second .category-list .manage > div button:hover {
+.mypage .second .category-list .manage > div a:hover {
   font-weight: 700;
 }
 
@@ -100,6 +100,13 @@
 .mypage .third .apply .ok {
   width: 12%;
   font-size: 20px;
+}
+.mypage .third .apply .cancel,
+.mypage .third .apply .ok {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  font-width: 700;
 }
 .mypage .third .apply-btn {
   margin-top: 20px;

@@ -1,14 +1,12 @@
 package com.mylog.post.domain;
 
+import com.mylog.member.domain.Member;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 @Getter
@@ -22,7 +20,12 @@ public class Category {
     
     private String name; // 카테고리명
 
-    public Category(String name) {
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "member_id", nullable = false)
+    public Member member;
+
+    public Category(String name, Member member) {
         this.name = name;
+        this.member = member;
     }
 }
