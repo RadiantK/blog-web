@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body>
+    <div class="management" th:fragment="subMenu">
+        <div class="title">
+            <a href="/templates/mypage/main.html"
+            th:href="@{/user/mypage}">
+                블로그 관리
+            </a>
+        </div>
+        <ul class="menu">
+            <li>
+                <a href="">글 쓰기</a>
+            </li>
+            <li>
+                <a href="">글 관리</a>
+            </li>
+            <li>
+                <a href="">카테고리 관리</a>
+            </li>
+            <li>
+                <a href="">블로그 관리</a>
+            </li>
+            <li>
+                <a href="">정보 수정</a>
+            </li>
+            <li>
+                <a href="">회원 탈퇴</a>
+            </li>
+        </ul>
+    </div>
+</body>
+</html>

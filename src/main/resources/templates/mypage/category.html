@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="~{/fragment/head :: otherHead('./css/mypage-category.css')}">
+<head th:replace="~{/fragment/head :: otherHead('/css/mypage-category.css')}">
 
 </head>
 <body>
@@ -10,29 +10,7 @@
 
   <div class="mypage">
     <div class="inner">
-      <div class="management">
-        <div class="title">블로그 관리</div>
-        <ul class="menu">
-          <li>
-            <a href="">글 쓰기</a>
-          </li>
-          <li>
-            <a href="">글 관리</a>
-          </li>
-          <li>
-            <a href="">카테고리 관리</a>
-          </li>
-          <li>
-            <a href="">블로그 관리</a>
-          </li>
-          <li>
-            <a href="">정보 수정</a>
-          </li>
-          <li>
-            <a href="">회원 탈퇴</a>
-          </li>
-        </ul>
-      </div>
+      <div th:replace="~{/fragment/menu :: subMenu}"></div>
   
       <div class="part">
         <div class="first">
