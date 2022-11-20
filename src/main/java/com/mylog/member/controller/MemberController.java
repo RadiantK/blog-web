@@ -1,5 +1,6 @@
 package com.mylog.member.controller;
 
+import com.mylog.global.argumentResolver.LoginMember;
 import com.mylog.global.common.Constant;
 import com.mylog.member.domain.GenderType;
 import com.mylog.member.dto.MemberJoinRequest;
@@ -111,10 +112,7 @@ public class MemberController {
     @GetMapping("/logout")
     public String logout(HttpServletRequest request) {
         // 세션이 있으면 세션 생성 x
-        HttpSession session = request.getSession(false);
-        if(session != null) {
-            session.invalidate();
-        }
+        invalidateSession(request);
 
         return "redirect:/";
     }
@@ -129,10 +127,19 @@ public class MemberController {
         return "auth/find-pwd";
     }
 
-    @DeleteMapping("/withdrawal/{email}")
-    public String deleteMember(@PathVariable String email) {
-        memberService.deleteMember(email);
+    @GetMapping("/withdrawal")
+    public String deleteMember(@LoginMember MemberLoginResponse member,
+                               HttpServletRequest request) {
+        memberService.deleteMember(member.getEmail());
+        invalidateSession(request);
 
         return "redirect:/";
+    }
+
+    private void invalidateSession(HttpServletRequest request) {
+        HttpSession session = request.getSession(false);
+        if (session != null) {
+            session.invalidate();
+        }
     }
 }
