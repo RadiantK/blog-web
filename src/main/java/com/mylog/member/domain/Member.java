@@ -37,13 +37,11 @@ public class Member extends BaseEntity {
     private Address address; // 주소
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false, length = 20)
+    @Column(length = 20)
     private RoleType role; // 권한
 
     private Integer enabled; // 탈퇴 여부
 
-    @OneToOne(mappedBy = "member", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Blog blog;
 
     @Builder
     public Member(String email, String password, String name, String phone, GenderType gender,
@@ -56,10 +54,6 @@ public class Member extends BaseEntity {
         this.address = address;
         this.role = role;
         this.enabled = enabled;
-    }
-
-    public void setBlog(Blog blog) {
-        this.blog = blog;
     }
 
     public void editMember(String password, String name, String phone, GenderType gender) {

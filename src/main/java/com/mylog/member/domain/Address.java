@@ -15,10 +15,12 @@ import javax.persistence.Embeddable;
 @ToString
 public class Address {
 
+    @Column(length = 20)
     private String postcode; // 우편번호
 
+    @Column(length = 200)
     private String street; // 주소
 
-    @Column(name = "address_detail")
+    @Column(name = "address_detail", length = 100)
     private String detail; // 상세주소
 }
