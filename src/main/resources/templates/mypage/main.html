@@ -5,7 +5,7 @@
 </head>
 <body>
   <!-- HEADER -->
-  <div th:replace="~{/fragment/header :: blogHeader ('블로그타이틀')}"></div>
+  <div th:replace="~{/fragment/header :: blogHeader}"></div>
 
 
   <div class="mypage">
@@ -16,15 +16,15 @@
         <div class="first">
           <div class="blog-title">
             <div class="name">* 블로그명 </div>
-            <div>나만의 블로그</div>
+            <div th:text="${blog != null} ? ${blog.name} : ''">나만의 블로그</div>
           </div>
           <div class="blog-nickname">
             <div class="nickname">* 닉네임 </div>
-            <div>RadiantK</div>
+            <div th:text="${blog != null} ? ${blog.nickname} : ''">RadiantK</div>
           </div>
           <div class="blog-description">
             <div class="description">* 블로그 설명 </div>
-            <p>블로그 설명 블로그 설명 블로그 설명 블로그 설명 블로그 설명 블로그 설명블로그 설명 블로그 설명 블로그 설명블로그 설명 블로그 설명 블로그 설명블로그 설명 블로그 설명 블로그 설명블로그 설명 블로그 설명 블로그 설명블로그 설명 블로그 설명 블로그 설명</p>
+            <p th:text="${blog != null} ? ${blog.description} : ''">블로그 설명 블로그 설명</p>
           </div>
         </div>
 

@@ -3,6 +3,7 @@ package com.mylog.member.service;
 import com.mylog.member.domain.Address;
 import com.mylog.member.domain.Member;
 import com.mylog.member.domain.RoleType;
+import com.mylog.member.dto.MemberEditInfo;
 import com.mylog.member.dto.MemberInfoRequest;
 import com.mylog.member.dto.MemberJoinRequest;
 import com.mylog.member.exception.DuplicatedMemberException;
@@ -35,9 +36,7 @@ public class MemberService {
 
         checkDuplicationMember(member);
 
-        if (request.isPasswordEqualToPasswordConfirm() == false) {
-            throw new WrongPasswordException();
-        }
+        passwordEqualToPasswordConfirm(request);
 
         Member newMember = Member.builder()
                 .email(request.getEmail())
@@ -53,9 +52,13 @@ public class MemberService {
         return memberRepository.save(newMember);
     }
 
-    public void updateMember(MemberInfoRequest request) {
+    public void updateMember(MemberEditInfo request) {
         Member member = memberRepository.findByEmailAndEnabled(request.getEmail(), 1).orElse(null);
         existsByMember(member);
+
+        if (request.isPasswordEqualToPasswordConfirm() == false) {
+            throw new WrongPasswordException();
+        }
 
         member.editMember(
                 passwordEncoder.encode(request.getPassword()),
@@ -69,6 +72,12 @@ public class MemberService {
         existsByMember(member);
 
         member.removeMember();
+    }
+
+    private void passwordEqualToPasswordConfirm(MemberJoinRequest request) {
+        if (request.isPasswordEqualToPasswordConfirm() == false) {
+            throw new WrongPasswordException();
+        }
     }
 
     private void checkDuplicationMember(Member member) {

@@ -61,7 +61,7 @@ class PostRepositoryTest {
 
         memberRepository.save(member);
 
-        category = new Category("db");
+        category = new Category("db", member);
         categoryRepository.save(category);
 
         for (int i = 1; i <= 7; i++) {

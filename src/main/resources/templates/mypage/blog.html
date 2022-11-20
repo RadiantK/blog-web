@@ -5,7 +5,7 @@
 </head>
 <body>
   <!-- HEADER -->
-  <div th:replace="~{/fragment/header :: blogHeader ('블로그타이틀')}"></div>
+  <div th:replace="~{/fragment/header :: blogHeader}"></div>
 
 
   <div class="mypage">
@@ -19,18 +19,27 @@
         <div class="first">
           
 
-          <form action="" method="">
+          <form action="" th:action="@{/user/mypage/blog}" method="post" th:object="${blogRequest}">
             <div class="blog-title">
               <div class="name">* 블로그명 </div>
-              <input type="text" value="나만의블로그"/>
+              <input type="text" th:field="*{name}" value="나만의블로그" th:value="*{name}"/>
+              <div class="name-error" th:errors="*{name}">블로그명 에러</div>
             </div>
             <div class="blog-nickname">
               <div class="nickname">* 닉네임 </div>
-              <input type="text" value="RadiantK">
+              <input type="text"
+                     th:field="*{nickname}" value="RadiantK"
+                     th:value="*{nickname} ? *{nickname} : ''">
+              <div class="nickname-error" th:errors="*{nickname}">닉네임 에러</div>
             </div>
             <div class="blog-description">
               <div class="description">* 블로그 설명 </div>
-              <textarea name="" id="">블로그 설명 블로그 설명 블로그 설명 블로그 설명 블로그 설명 블로그 설명블로그 설명 블로그 설명 블로그 설명블로그 설명 블로그 설명 블로그 설명블로그 설명 블로그 설명 블로그 설명블로그 설명 블로그 설명 블로그 설명블로그 설명 블로그 설명 블로그 설명</textarea>
+              <textarea th:field="*{description}"
+                        th:text="*{description} ? *{description} : ''">블로그 설명</textarea>
+            </div>
+
+            <div class="button">
+              <button class="btn blog-btn">설정</button>
             </div>
           </form>
         </div>
@@ -43,5 +52,16 @@
   <!-- FOOTER -->
   <div th:replace="~{/fragment/footer :: blogFooter}"></div>
 
+
+  <script th:inline="javascript">
+    let error = [[${param.error}]];
+
+    window.onload = function() {
+      if (error[0] === 'blog') {
+        alert('블로그명 및 닉네임을 등록 후 사용해주세요.')
+        return;
+      }
+    }
+  </script>
 </body>
 </html>

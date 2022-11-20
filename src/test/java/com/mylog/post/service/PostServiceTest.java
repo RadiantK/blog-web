@@ -64,7 +64,7 @@ class PostServiceTest {
 
         memberRepository.save(member);
 
-        category = new Category("db");
+        category = new Category("db", member);
         categoryRepository.save(category);
 
         for (int i = 1; i <= 7; i++) {
@@ -233,12 +233,20 @@ class PostServiceTest {
     @Test
     void removePostTest() {
         //Given
+        Post post = Post.builder()
+                .title("제목")
+                .content("내용")
+                .member(member)
+                .category(category)
+                .build();
+
+        Post save = postRepository.save(post);
 
         //When&Then
-        postService.removePost(5L);
+        postService.removePost(post.getId());
 
-        Post post = postRepository.findById(5L).orElse(null);
-        assertThat(post).isNull();
+        Post findPost = postRepository.findById(post.getId()).orElse(null);
+        assertThat(findPost).isNull();
     }
 
 }

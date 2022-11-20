@@ -9,6 +9,4 @@ import java.util.Optional;
 public interface BlogRepository extends JpaRepository<Blog, Long> {
 
     Optional<Blog> findByMember(Member member);
-
-    Optional<Blog> findByNickname(String nickname);
 }

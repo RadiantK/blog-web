@@ -38,7 +38,6 @@
 .mypage .part {
   width: 80%;
   margin-top: 80px;
-  height: 800px;
 }
 .mypage .part .total {
   font-size: 24px;
@@ -70,7 +69,13 @@
   height: 32px;
   padding:4px 8px;
   font-size: 20px;
-  margin-bottom: 24px;
+  margin-bottom: 12px;
+}
+.mypage .part .first .blog-title .name-error,
+.mypage .part .first .blog-nickname .nickname-error {
+  margin-bottom: 12px;
+  margin-left: 12px;
+  color: #FF0000;
 }
 .mypage .part .first .blog-description textarea {
   margin-left: 12px;
@@ -80,4 +85,12 @@
   resize: none;
   margin-bottom: 24px;
   padding: 8px;
+}
+.mypage .part .first .button {
+  position: relative;
+  margin-bottom: 40px;
+}
+.mypage .part .first .button .blog-btn {
+  position: absolute;
+  right: 0;
 }

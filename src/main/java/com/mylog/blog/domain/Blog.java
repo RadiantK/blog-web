@@ -1,6 +1,6 @@
 package com.mylog.blog.domain;
 
-import com.mylog.common.BaseEntity;
+import com.mylog.global.common.BaseEntity;
 import com.mylog.member.domain.Member;
 import lombok.*;
 
@@ -23,7 +23,7 @@ public class Blog extends BaseEntity {
 
     private String description; // 블로그 설명
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "member_id", nullable = false)
     private Member member;
 

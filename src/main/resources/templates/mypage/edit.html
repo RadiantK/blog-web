@@ -5,7 +5,7 @@
 </head>
 <body>
   <!-- HEADER -->
-  <div th:replace="~{/fragment/header :: blogHeader ('블로그타이틀')}"></div>
+  <div th:replace="~{/fragment/header :: blogHeader}"></div>
 
 
   <div class="mypage">
@@ -18,41 +18,43 @@
             <span>* 회원정보 수정</span>
           </div>
 
-          <form action="" method="" id="editForm">
+          <form action="" th:action="@{/user/mypage/edit}" method="post" class="editForm" th:object="${memberEditInfo}">
             <div class="email">
               <label for="email">이메일</label><br/>
-              <input type="text" name="email" id="email" value="test@test.com" disabled />
+              <input type="text" id="email" th:field="*{email}" value="test@test.com" readonly />
             </div>
             <div class="password">
               <label for="password">비밀번호</label><br/>
-              <input type="password" name="password" id="password" />
-              <div class="passwordHelp">awefawefwaefwaef</div>
+              <input type="password" name="password" id="password" th:field="*{password}" placeholder="8~20 영문자, 숫자, 특수문자를 하나이상 사용" maxlength="20" autocomplete="off"/>
+              <div class="passwordHelp" th:errors="*{password}">비밀번호 오류</div>
             </div>
             <div class="passwordConfirm">
               <label for="passwordConfirm">비밀번호 확인</label><br/>
-              <input type="password" name="passwordConfirm" id="passwordConfirm" />
-              <div class="passwordConfirmHelp">awefwawefwaefaef</div>
+              <input type="password" name="passwordConfirm" id="passwordConfirm" placeholder="입력하신 비밀번호와 동일한 비밀번호를 입력하세요." maxlength="20" autocomplete="off" />
+              <div class="passwordConfirmHelp" th:errors="*{passwordConfirm}">비밀번호 확인 오류</div>
             </div>
             <div class="name">
               <label for="name">이름</label><br/>
-              <input type="text" name="name" id="name" />
-              <div class="nameHelp">awefwawefwaefaef</div>
+              <input type="text" name="name" id="name" th:field="*{name}" placeholder="2자 이상 한글만 사용" maxlength="10"/>
+              <div class="nameHelp" th:errors="*{name}">이름</div>
             </div>
             <div class="phone">
               <label for="phone">전화번호</label><br/>
-              <input type="text" name="phone" id="phone" />
-              <div class="phoneHelp">awefwaefawefwaef</div>
+              <input type="text" name="phone" id="phone" th:field="*{phone}" placeholder="ex)000-0000-0000" maxlength="13"/>
+              <div class="phoneHelp" th:errors="*{phone}">전화번호</div>
             </div>
             <div class="gender">
               <span>성별</span>
-              <input type="radio" name="gender" id="male" value="male"/>
-              <label for="male">남자</label>
-              <input type="radio" name="gender" id="female" value="female"/>
-              <label for="female">여자</label>
-              <div class="genderHelp">awefwaefawefwaef</div>
+              <span th:each="type : ${genders}">
+                <input type="radio" name="gender" th:field="*{gender}" value="male" th:value="${type.name()}" th:checked="${type.name() eq 'MALE'}">
+                <label th:for="${#ids.prev('gender')}" th:text="${type.description}">남자</label>
+              </span>
+              <div class="genderHelp" th:errors="*{gender}">성별 오류</div>
             </div>
+
+
             <div class="btn-group">
-              <button type="button" class="btn edit">정보수정</button>
+              <button class="btn edit">정보수정</button>
             </div>
           </form>
         </div>

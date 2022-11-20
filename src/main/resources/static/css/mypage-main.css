@@ -38,6 +38,7 @@
 .mypage .part {
   width: 80%;
   margin-top: 80px;
+  min-height: 800px;
 }
 .mypage .part .first,
 .mypage .part .second {

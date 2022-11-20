@@ -5,7 +5,7 @@
 </head>
 <body>
   <!-- HEADER -->
-  <div th:replace="~{/fragment/header :: blogHeader ('블로그타이틀')}"></div>
+  <div th:replace="~{/fragment/header :: blogHeader}"></div>
 
 
   <div class="mypage">
@@ -27,16 +27,15 @@
                   한 번 삭제된 정보는 복구가 불가능하며 재가입 시 계정이 완전히 초기화됩니다.
                 </p>
                 <div>
-                  <input type="checkbox"> 안내사항을 모두 확인했으며 이에 동의합니다.
+                  <input type="checkbox" class="checkbox"> 안내사항을 모두 확인했으며 이에 동의합니다.
                 </div>
-                <button type="button" class="btn">
+                <button type="button" class="btn withdraw-btn">
                   탈퇴하기
                 </button>
               </div>
             </div>
           </form>
         </div>
-
       </div>
     </div>
   </div>
@@ -45,5 +44,17 @@
   <!-- FOOTER -->
   <div th:replace="~{/fragment/footer :: blogFooter}"></div>
 
+  <script>
+    const inputEl = document.querySelector('.checkbox');
+    const btnEl = document.querySelector('.withdraw-btn');
+
+    btnEl.addEventListener('click', () => {
+      if (inputEl.checked == false) {
+        alert('안내사항을 확인했으면 체크 후 진행해주세요.');
+        return;
+      }
+      location.href = "/mylog.com/user/withdrawal";
+    })
+  </script>
 </body>
 </html>

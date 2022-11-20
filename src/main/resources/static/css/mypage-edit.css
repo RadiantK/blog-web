@@ -48,7 +48,7 @@
   font-weight: 700;
   border-bottom: 2px solid #333;
 }
-.mypage .part .first #editForm {
+.mypage .part .first .editForm {
   margin-top: 24px;
 }
 
@@ -80,7 +80,6 @@
   font-weight: 700;
 }
 .mypage .part .first .gender span {
-  display: block;
   font-size: 20px;
   font-weight: 700;
 }

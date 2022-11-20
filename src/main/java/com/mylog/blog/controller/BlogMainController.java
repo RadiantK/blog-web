@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequiredArgsConstructor
 @RequestMapping("/blog")
 @Slf4j
-public class BlogController {
+public class BlogMainController {
 
     private final PostService postService;
 

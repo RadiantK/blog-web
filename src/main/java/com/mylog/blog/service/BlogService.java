@@ -18,26 +18,35 @@ public class BlogService {
     private final BlogRepository blogRepository;
     private final MemberRepository memberRepository;
 
-    public Blog findBlogInfo(String email) {
+    public Blog findBlogInfoUseEmail(String email) {
         Member member = getMember(email);
 
         return blogRepository.findByMember(member).orElse(null);
     }
 
+    public Blog findBlog(Long blogId) {
+        return blogRepository.findById(blogId).orElse(null);
+    }
+
     public Blog saveBlogInfo(BlogRequest request) {
         Member member = getMember(request.getEmail());
 
-//        blogRepository.findByNickname(request.getNickname())
-//                .orElseThrow(DuplicateNicknameException::new);
+        Blog findBlog = blogRepository.findByMember(member).orElse(null);
 
-        Blog blog = Blog.builder()
-                .name(request.getName())
-                .nickname(request.getNickname())
-                .description(request.getDescription())
-                .member(member)
-                .build();
+        if (findBlog == null) {
+            Blog blog = Blog.builder()
+                    .name(request.getName())
+                    .nickname(request.getNickname())
+                    .description(request.getDescription())
+                    .member(member)
+                    .build();
 
-        return blogRepository.save(blog);
+            return blogRepository.save(blog);
+        }
+
+        findBlog.editBlog(request.getName(), request.getNickname(), request.getDescription());
+
+        return findBlog;
     }
 
     public void editBlogInfo(BlogRequest request) {

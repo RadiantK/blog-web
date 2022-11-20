@@ -8,6 +8,7 @@ import com.mylog.member.domain.GenderType;
 import com.mylog.member.domain.Member;
 import com.mylog.member.domain.RoleType;
 import com.mylog.member.repository.MemberRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -21,6 +22,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
 @Transactional
+@Slf4j
 class BlogServiceTest {
 
     @Autowired
@@ -31,6 +33,9 @@ class BlogServiceTest {
 
     @Autowired
     private MemberRepository memberRepository;
+
+    @Autowired
+    private EntityManager em;
 
     Member member;
     String email = "test@test.com";
@@ -49,6 +54,7 @@ class BlogServiceTest {
                 .build();
 
         memberRepository.save(member);
+        em.clear();
     }
 
     @DisplayName("블로그 정보 없을 때 조회")
@@ -57,7 +63,7 @@ class BlogServiceTest {
         //Given
 
         //When
-        Blog blog = blogService.findBlogInfo(email);
+        Blog blog = blogService.findBlogInfoUseEmail(email);
 
         //Then
         assertThat(blog).isNull();
@@ -76,7 +82,7 @@ class BlogServiceTest {
         blogRepository.save(req);
 
         //When
-        Blog blog = blogService.findBlogInfo(email);
+        Blog blog = blogService.findBlogInfoUseEmail(email);
 
         //Then
         assertThat(blog).isNotNull();

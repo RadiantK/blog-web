@@ -2,10 +2,7 @@ package com.mylog.member.service;
 
 import com.mylog.member.domain.GenderType;
 import com.mylog.member.domain.Member;
-import com.mylog.member.dto.MemberInfoRequest;
-import com.mylog.member.dto.MemberJoinRequest;
-import com.mylog.member.dto.MemberLoginRequest;
-import com.mylog.member.dto.MemberLoginResponse;
+import com.mylog.member.dto.*;
 import com.mylog.member.exception.DuplicatedMemberException;
 import com.mylog.member.exception.MemberNotFoundException;
 import com.mylog.member.exception.WrongPasswordException;
@@ -132,9 +129,10 @@ class MemberServiceTest {
         Member member = memberService.join(getMemberJoinRequest());
         em.flush();
 
-        MemberInfoRequest request = new MemberInfoRequest();
+        MemberEditInfo request = new MemberEditInfo();
         request.setEmail(member.getEmail());
-        request.setPassword(member.getPassword());
+        request.setPassword("1111");
+        request.setPasswordConfirm("1111");
         request.setName("가나다");
         request.setGender(GenderType.FEMALE);
         request.setPhone("010");
