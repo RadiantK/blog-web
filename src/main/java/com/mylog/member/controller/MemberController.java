@@ -1,5 +1,6 @@
 package com.mylog.member.controller;
 
+import com.mylog.global.common.Constant;
 import com.mylog.member.domain.GenderType;
 import com.mylog.member.dto.MemberJoinRequest;
 import com.mylog.member.dto.MemberLoginRequest;
@@ -30,7 +31,6 @@ public class MemberController {
 
     private final MemberService memberService;
     private final MemberLoginService memberLoginService;
-    private final String LOGIN_MEMBER = "loginMember";
 
     @ModelAttribute("genders")
     public GenderType[] genderTypes() {
@@ -52,19 +52,21 @@ public class MemberController {
     public String joinMain(@Validated @ModelAttribute MemberJoinRequest memberJoinRequest,
                            BindingResult bindingResult) {
 
-        if (memberJoinRequest.isPasswordEqualToPasswordConfirm() == false) {
+//        if (memberJoinRequest.isPasswordEqualToPasswordConfirm() == false) {
+//            bindingResult.addError(new FieldError("memberJoinRequest", "passwordConfirm", "비밀번호와 비밀번호 확인이 일치하지 않습니다."));
+//        }
+
+        try {
+            memberService.join(memberJoinRequest);
+        } catch (WrongPasswordException e) {
             bindingResult.addError(new FieldError("memberJoinRequest", "passwordConfirm", "비밀번호와 비밀번호 확인이 일치하지 않습니다."));
+        } catch (DuplicatedMemberException e) {
+            bindingResult.addError(new FieldError("memberJoinRequest", "email", "중복된 이메일이 존재합니다."));
         }
 
         if (bindingResult.hasErrors()) {
             log.info("bindingResult : {}", bindingResult);
             return "auth/join-main";
-        }
-
-        try {
-            memberService.join(memberJoinRequest);
-        } catch (DuplicatedMemberException e) {
-            bindingResult.addError(new FieldError("memberJoinRequest", "email", "중복된 이메일이 존재합니다."));
         }
 
         return "redirect:/user/join/success";
@@ -89,6 +91,7 @@ public class MemberController {
                         @RequestParam(defaultValue = "/") String url,
                         HttpServletRequest request) {
 
+        log.info("url : {}", url);
         log.info("memberLoginRequest : {}", memberLoginRequest);
 
         MemberLoginResponse memberLoginResponse;
@@ -98,8 +101,9 @@ public class MemberController {
             bindingResult.addError(new ObjectError("memberLoginRequest", "아이디 또는 비밀번호가 일치하지 않습니다."));
             return "auth/login";
         }
+
         HttpSession session = request.getSession();
-        session.setAttribute(LOGIN_MEMBER, memberLoginResponse);
+        session.setAttribute(Constant.LOGIN_MEMBER, memberLoginResponse);
 
         return "redirect:" + url;
     }
