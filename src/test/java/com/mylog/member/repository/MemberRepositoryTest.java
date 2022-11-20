@@ -1,10 +1,12 @@
 package com.mylog.member.repository;
 
-import com.mylog.config.AppConfig;
-import com.mylog.config.JpaConfig;
+import com.mylog.global.config.AppConfig;
+import com.mylog.global.config.JpaConfig;
 import com.mylog.member.domain.Address;
 import com.mylog.member.domain.GenderType;
 import com.mylog.member.domain.Member;
+import com.mylog.member.domain.RoleType;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -17,6 +19,7 @@ import java.util.NoSuchElementException;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+@Slf4j
 @DataJpaTest
 @Import({AppConfig.class, JpaConfig.class})
 class MemberRepositoryTest {
@@ -31,6 +34,26 @@ class MemberRepositoryTest {
     private EntityManager em;
 
     @Test
+    void findMemberTest() {
+        Member member = Member.builder()
+                .email("test@test.com")
+                .password(passwordEncoder.encode("1234"))
+                .name("김자바")
+                .phone("010")
+                .gender(GenderType.MALE)
+                .role(RoleType.ROLE_MEMBER)
+                .address(new Address("01112", "서울시 구로구", "11층"))
+                .build();
+
+        Member saveMember = memberRepository.save(member);
+        em.clear();
+        log.info("========================================");
+        log.info("========================================");
+        log.info("========================================");
+        memberRepository.findByEmailAndEnabled("test@test.com", 1);
+    }
+
+    @Test
     void saveTest() {
         //Given
         Member member = Member.builder()
@@ -39,15 +62,17 @@ class MemberRepositoryTest {
                 .name("김자바")
                 .phone("010")
                 .gender(GenderType.MALE)
+                .role(RoleType.ROLE_MEMBER)
                 .address(new Address("01112", "서울시 구로구", "11층"))
                 .build();
-
 
         //When
         Member result = memberRepository.save(member);
 
+        log.info("result : {}", result);
+
         //Then
-        assertThat(result.getId()).isEqualTo(1L);
+        assertThat(result).isNotNull();
     }
     
     @Test
@@ -59,6 +84,7 @@ class MemberRepositoryTest {
                 .name("김자바")
                 .phone("010")
                 .gender(GenderType.MALE)
+                .role(RoleType.ROLE_MEMBER)
                 .address(new Address("01112", "서울시 구로구", "11층"))
                 .build();
 
@@ -86,6 +112,7 @@ class MemberRepositoryTest {
                 .name("김자바")
                 .phone("010")
                 .gender(GenderType.MALE)
+                .role(RoleType.ROLE_MEMBER)
                 .address(new Address("01112", "서울시 구로구", "11층"))
                 .build();
 

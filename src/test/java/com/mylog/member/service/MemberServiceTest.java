@@ -4,10 +4,13 @@ import com.mylog.member.domain.GenderType;
 import com.mylog.member.domain.Member;
 import com.mylog.member.dto.MemberInfoRequest;
 import com.mylog.member.dto.MemberJoinRequest;
+import com.mylog.member.dto.MemberLoginRequest;
+import com.mylog.member.dto.MemberLoginResponse;
 import com.mylog.member.exception.DuplicatedMemberException;
 import com.mylog.member.exception.MemberNotFoundException;
+import com.mylog.member.exception.WrongPasswordException;
 import com.mylog.member.repository.MemberRepository;
-import org.junit.jupiter.api.BeforeEach;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,14 +19,12 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 
-import java.util.NoSuchElementException;
-
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 @Transactional
+@Slf4j
 class MemberServiceTest {
 
     @Autowired
@@ -33,27 +34,16 @@ class MemberServiceTest {
     private MemberRepository memberRepository;
 
     @Autowired
+    private MemberLoginService memberLoginService;
+
+    @Autowired
     private EntityManager em;
-
-    MemberJoinRequest memberJoinRequest;
-
-    @BeforeEach
-    void setup() {
-        memberJoinRequest = new MemberJoinRequest();
-        memberJoinRequest.setEmail("test@test.com");
-        memberJoinRequest.setPassword("asdf1234");
-        memberJoinRequest.setName("김자바");
-        memberJoinRequest.setPhone("01011112222");
-        memberJoinRequest.setGender(GenderType.MALE);
-        memberJoinRequest.setPostcode("1234");
-        memberJoinRequest.setStreet("서울시 구로구");
-    }
 
     @DisplayName("단일 회원 조회 테스트")
     @Test
     void findMemberTest() {
         //Given
-        Member saveMember = memberService.saveMember(memberJoinRequest);
+        Member saveMember = memberService.join(getMemberJoinRequest());
 
         //When
         Member result = memberService.findMember(saveMember.getEmail());
@@ -68,9 +58,9 @@ class MemberServiceTest {
         //Given
 
         //When&Then
-        assertThatThrownBy(() -> memberService.findMember("test"))
-                .isInstanceOf(MemberNotFoundException.class);
+        Member member = memberService.findMember("test");
 
+        assertThat(member).isNull();
     }
 
     @DisplayName("회원 등록")
@@ -79,7 +69,8 @@ class MemberServiceTest {
         //Given
         MemberJoinRequest request = new MemberJoinRequest();
         request.setEmail("test@test.com");
-        request.setPassword("asdf1234");
+        request.setPassword("!asdf1234");
+        request.setPasswordConfirm("!asdf1234");
         request.setName("김자바");
         request.setPhone("01011112222");
         request.setGender(GenderType.MALE);
@@ -87,8 +78,7 @@ class MemberServiceTest {
         request.setStreet("서울시 구로구");
 
         //When
-        Member member = memberService.saveMember(request);
-        System.out.println("member = " + member);
+        Member member = memberService.join(request);
 
         //Then
         Member member1 = memberRepository.findByEmailAndEnabled(member.getEmail(), 1).get();
@@ -101,7 +91,8 @@ class MemberServiceTest {
         //Given
         MemberJoinRequest dupleMember = new MemberJoinRequest();
         dupleMember.setEmail("test@test.com");
-        dupleMember.setPassword("asdf1234");
+        dupleMember.setPassword("!asdf1234");
+        dupleMember.setPasswordConfirm("!asdf1234");
         dupleMember.setName("중복회원");
         dupleMember.setPhone("01011112222");
         dupleMember.setGender(GenderType.MALE);
@@ -109,19 +100,36 @@ class MemberServiceTest {
         dupleMember.setStreet("서울시 구로구");
 
         //When
-        Member member = memberService.saveMember(memberJoinRequest);
-        System.out.println("member = " + member);
+        Member member = memberService.join(getMemberJoinRequest());
 
         //Then
-        assertThatThrownBy(() -> memberService.saveMember(dupleMember))
+        assertThatThrownBy(() -> memberService.join(dupleMember))
                 .isInstanceOf(DuplicatedMemberException.class);
+    }
+
+    @DisplayName("회원가입 테스트, 비밀번호 불일치")
+    void WrongPasswordJoinTest() {
+        //Given
+        MemberJoinRequest request = new MemberJoinRequest();
+        request.setEmail("test@test.com");
+        request.setPassword("!test1234");
+        request.setPasswordConfirm("test1234");
+        request.setName("테스트");
+        request.setPhone("010-2155-4444");
+        request.setGender(GenderType.MALE);
+        request.setPostcode("12345");
+        request.setStreet("서울시 구로구");
+
+        //When&Then
+        assertThatThrownBy(() -> memberService.join(request))
+                .isInstanceOf(WrongPasswordException.class);
     }
 
     @DisplayName("회원 정보 수정")
     @Test
     void updateMemberTest() {
         //Given
-        Member member = memberService.saveMember(memberJoinRequest);
+        Member member = memberService.join(getMemberJoinRequest());
         em.flush();
 
         MemberInfoRequest request = new MemberInfoRequest();
@@ -144,10 +152,11 @@ class MemberServiceTest {
         assertThat(result.getPhone()).isEqualTo(request.getPhone());
     }
 
+    @DisplayName("회원 탈퇴 테스트")
     @Test
     void deleteMemberTest() {
         //Given
-        Member member = memberService.saveMember(memberJoinRequest);
+        Member member = memberService.join(getMemberJoinRequest());
         em.flush();
 
         //When & Then
@@ -158,4 +167,64 @@ class MemberServiceTest {
         assertThat(result.getEnabled()).isEqualTo(0);
         assertThat(result.getEnabled()).isEqualTo(member.getEnabled());
     }
+
+    @DisplayName("로그인 테스트, 회원이 있을 때")
+    @Test
+    void loginTest() {
+        //Given
+        Member member = memberService.join(getMemberJoinRequest());
+        MemberLoginRequest request = new MemberLoginRequest();
+        request.setEmail("test@test.com");
+        request.setPassword("!asdf1234");
+
+        //When
+        MemberLoginResponse response = memberLoginService.login(request);
+
+        //Then
+        assertThat(response).isNotNull();
+        assertThat(response.getEmail()).isEqualTo(request.getEmail());
+    }
+
+    @DisplayName("로그인 테스트, 회원이 없을 때")
+    @Test
+    void NotExistMemberLoginTest() {
+        //Given
+        Member member = memberService.join(getMemberJoinRequest());
+        MemberLoginRequest request = new MemberLoginRequest();
+        request.setEmail("ttest@test.com");
+        request.setPassword("!asdf1234");
+
+        //When&Then
+        assertThatThrownBy(() -> memberLoginService.login(request))
+                .isInstanceOf(MemberNotFoundException.class);
+    }
+
+    @DisplayName("로그인 테스트, 비밀번호 불일치")
+    @Test
+    void WrongPasswordLoginTest() {
+        //Given
+        Member member = memberService.join(getMemberJoinRequest());
+        MemberLoginRequest request = new MemberLoginRequest();
+        request.setEmail("test@test.com");
+        request.setPassword("!asdf21234");
+
+        //When&Then
+        assertThatThrownBy(() -> memberLoginService.login(request))
+                .isInstanceOf(WrongPasswordException.class);
+    }
+
+    private MemberJoinRequest getMemberJoinRequest() {
+        MemberJoinRequest memberJoinRequest = new MemberJoinRequest();
+        memberJoinRequest.setEmail("test@test.com");
+        memberJoinRequest.setPassword("!asdf1234");
+        memberJoinRequest.setPasswordConfirm("!asdf1234");
+        memberJoinRequest.setName("김자바");
+        memberJoinRequest.setPhone("010-1111-2222");
+        memberJoinRequest.setGender(GenderType.MALE);
+        memberJoinRequest.setPostcode("1234");
+        memberJoinRequest.setStreet("서울시 구로구");
+
+        return memberJoinRequest;
+    }
+
 }

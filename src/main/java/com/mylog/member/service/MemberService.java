@@ -7,6 +7,7 @@ import com.mylog.member.dto.MemberInfoRequest;
 import com.mylog.member.dto.MemberJoinRequest;
 import com.mylog.member.exception.DuplicatedMemberException;
 import com.mylog.member.exception.MemberNotFoundException;
+import com.mylog.member.exception.WrongPasswordException;
 import com.mylog.member.repository.MemberRepository;
 import com.mylog.post.domain.Category;
 import com.mylog.post.repository.CategoryRepository;
@@ -31,7 +32,12 @@ public class MemberService {
 
     public Member join(MemberJoinRequest request) {
         Member member = memberRepository.findByEmailAndEnabled(request.getEmail(), 1).orElse(null);
+
         checkDuplicationMember(member);
+
+        if (request.isPasswordEqualToPasswordConfirm() == false) {
+            throw new WrongPasswordException();
+        }
 
         Member newMember = Member.builder()
                 .email(request.getEmail())

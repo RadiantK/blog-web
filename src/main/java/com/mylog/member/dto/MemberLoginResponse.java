@@ -14,20 +14,4 @@ public class MemberLoginResponse {
     private String email;
     private RoleType role;
     private String blogName;
-
-    public static MemberLoginResponse of(Member member) {
-        if(member.getBlog() == null || member.getBlog().getName() == null) {
-            return new MemberLoginResponse(
-                    member.getEmail(),
-                    member.getRole(),
-                    null
-            );
-        }
-
-        return new MemberLoginResponse(
-                member.getEmail(),
-                member.getRole(),
-                member.getBlog().getName()
-        );
-    }
 }

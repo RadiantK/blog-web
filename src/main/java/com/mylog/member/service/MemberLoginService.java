@@ -29,9 +29,10 @@ public class MemberLoginService {
         }
 
         Blog blog = blogRepository.findByMember(member).orElse(null);
-        member.setBlog(blog);
 
-        return MemberLoginResponse.of(member);
+        return blog != null
+                ? new MemberLoginResponse(member.getEmail(), member.getRole(), blog.getName())
+                : new MemberLoginResponse(member.getEmail(), member.getRole(), null);
     }
 
     private boolean isMatchPassword(String rawPwd, String encodePwd) {
