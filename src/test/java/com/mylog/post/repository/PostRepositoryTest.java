@@ -1,7 +1,7 @@
 package com.mylog.post.repository;
 
-import com.mylog.config.AppConfig;
-import com.mylog.config.JpaConfig;
+import com.mylog.global.config.AppConfig;
+import com.mylog.global.config.JpaConfig;
 import com.mylog.member.domain.Address;
 import com.mylog.member.domain.GenderType;
 import com.mylog.member.domain.Member;
@@ -9,7 +9,7 @@ import com.mylog.member.domain.RoleType;
 import com.mylog.member.repository.MemberRepository;
 import com.mylog.post.domain.Category;
 import com.mylog.post.domain.Post;
-import com.mylog.post.dto.PostMainResponse;
+import com.mylog.post.dto.PostDataResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -18,12 +18,12 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.annotation.Import;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 
 import javax.persistence.EntityManager;
+import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 @Slf4j
 @DataJpaTest
@@ -83,15 +83,28 @@ class PostRepositoryTest {
     void findPostMainPageTest() {
         Member member = memberRepository.findByEmailAndEnabled(email, 1).orElse(null);
 
-        Page<PostMainResponse> posts =
+        Page<PostDataResponse> posts =
                 postRepository.findAllMainPage(member, "%%", PageRequest.of(1, 5));
 
         log.info("============모든 게시물 출력============");
 
         log.info("getTotalPages: {}", posts.getTotalPages());
         log.info("getTotalElements: {}", posts.getTotalElements());
-        log.info("==============================");
         posts.forEach(s -> log.info("post : {}", s));
-        log.info("==============================");
+        assertThat(posts.getTotalPages()).isEqualTo(2);
+        assertThat(posts.getTotalElements()).isEqualTo(7);
+    }
+
+    @Test
+    void findTop3OrderByIdDescTest() {
+        List<Post> list = postRepository.findTop3ByOrderByIdDesc();
+
+        List<PostDataResponse> result = new ArrayList<>();
+        for (Post post : list) {
+            result.add(new PostDataResponse(post.getId(), post.getTitle(), post.getContent(), post.getCreatedAt()));
+        }
+
+        log.info("result : {}", result);
+        assertThat(result.size()).isEqualTo(3);
     }
 }

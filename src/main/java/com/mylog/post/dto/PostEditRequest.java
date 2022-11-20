@@ -6,7 +6,7 @@ import lombok.Data;
 public class PostEditRequest {
 
     private Long postId;
-    private String categoryName;
+    private Long categoryId;
     private String title;
     private String content;
 }

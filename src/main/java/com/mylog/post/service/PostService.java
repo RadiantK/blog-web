@@ -15,6 +15,9 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Slf4j
 @Service
 @RequiredArgsConstructor
@@ -26,7 +29,7 @@ public class PostService {
     private final MemberRepository memberRepository;
 
     // 개인 블로그 메인 게시물 페이징 처리
-    public Page<PostMainResponse> mainPagePost(PostMainRequest request) {
+    public Page<PostDataResponse> blogMainPagePost(PostDataRequest request) {
         Member member = getMember(request.getEmail());
 
         if (request.getSearch() == null) {
@@ -36,7 +39,17 @@ public class PostService {
         return postRepository.findAllMainPage(
                 member,
                 "%" + request.getSearch() + "%",
-                PageRequest.of(request.getPage() - 1, 5));
+                PageRequest.of(request.getPage() - 1, request.getPagingSize()));
+    }
+
+    public List<PostDataResponse> myPageMainPost() {
+        List<Post> post = postRepository.findTop3ByOrderByIdDesc();
+        List<PostDataResponse> list = post.stream()
+                .map(p -> {
+                    return new PostDataResponse(p.getId(), p.getTitle(), p.getContent(), p.getCreatedAt());
+                }).collect(Collectors.toList());
+        
+        return list;
     }
 
     // 게시물 저장
@@ -45,7 +58,7 @@ public class PostService {
 
         Category category = null;
         if (request.getCategoryId() != null) {
-            category = categoryRepository.findById(request.getCategoryId()).get();
+            category = categoryRepository.findById(request.getCategoryId()).orElse(null);
         }
 
         Post post = Post.builder()
@@ -61,16 +74,21 @@ public class PostService {
     // 게시물 상세
     public PostDetailResponse detailPost(Long num) {
         Post post = postRepository.findPostAndCategory(num).orElse(null);
-
         return PostDetailResponse.of(post);
     }
 
     // 게시물 수정
     public void editPost(PostEditRequest request) {
-        Category category = categoryRepository.findByName(request.getCategoryName()).orElse(null);
+        Category category = categoryRepository.findById(request.getCategoryId()).orElse(null);
         Post post = postRepository.findById(request.getPostId()).orElse(null);
         post.edit(request.getTitle(), request.getContent(), category);
         log.info("post : {}", post);
+    }
+
+    // 게시물 삭제
+    public void removePost(Long postId) {
+        Post post = postRepository.findById(postId).orElse(null);
+        postRepository.delete(post);
     }
 
     // 회원 체크
@@ -78,4 +96,5 @@ public class PostService {
         return memberRepository.findByEmailAndEnabled(email, 1)
                 .orElseThrow(MemberNotFoundException::new);
     }
+
 }

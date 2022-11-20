@@ -1,6 +1,6 @@
 package com.mylog.post.domain;
 
-import com.mylog.common.BaseEntity;
+import com.mylog.global.common.BaseEntity;
 import com.mylog.member.domain.Member;
 import lombok.*;
 

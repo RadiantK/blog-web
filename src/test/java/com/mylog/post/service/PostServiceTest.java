@@ -17,13 +17,13 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Page;
-import org.springframework.test.annotation.Commit;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 @Slf4j
 @SpringBootTest
@@ -85,12 +85,13 @@ class PostServiceTest {
     @DisplayName("메인페이지 블로그 게시물 출력, 검색어 없을 때")
     @Test
     void mainPagePost() {
-        PostMainRequest request = new PostMainRequest();
+        PostDataRequest request = new PostDataRequest();
         request.setSearch(null);
         request.setEmail(email);
         request.setPage(1);
+        request.setPagingSize(5);
 
-        Page<PostMainResponse> responsePage = postService.mainPagePost(request);
+        Page<PostDataResponse> responsePage = postService.blogMainPagePost(request);
 
         assertThat(responsePage.getTotalPages()).isEqualTo(2);
         assertThat(responsePage.getTotalElements()).isEqualTo(7);
@@ -118,6 +119,9 @@ class PostServiceTest {
     @DisplayName("카테고리 있을 때 게시물 저장")
     @Test
     void savePostExistCategory() {
+        log.info("====================================");
+        log.info("====================================");
+
         //Given
         PostSaveRequest request = new PostSaveRequest();
         request.setTitle("저장할 제목");
@@ -156,7 +160,7 @@ class PostServiceTest {
         assertThat(response.getPostId()).isEqualTo(save.getId());
         assertThat(response.getTitle()).isEqualTo(save.getTitle());
         assertThat(response.getContent()).isEqualTo(save.getContent());
-        assertThat(response.getCategoryId()).isEqualTo(save.getCategory().getId());
+        assertThat(response.getCategory().getId()).isEqualTo(save.getCategory().getId());
     }
 
     @DisplayName("블로그 게시물 상세정보, 카테고리 X")
@@ -181,7 +185,7 @@ class PostServiceTest {
         assertThat(response.getPostId()).isEqualTo(save.getId());
         assertThat(response.getTitle()).isEqualTo(save.getTitle());
         assertThat(response.getContent()).isEqualTo(save.getContent());
-        assertThat(response.getCategoryId()).isNull();
+        assertThat(response.getCategory()).isNull();
     }
 
     @DisplayName("블로그 게시물 수정")
@@ -201,7 +205,7 @@ class PostServiceTest {
 
         PostEditRequest req = new PostEditRequest();
         req.setPostId(save.getId());
-        req.setCategoryName(category.getName());
+        req.setCategoryId(category.getId());
         req.setTitle("수정한 제목");
         req.setContent("수정한 내용");
         postService.editPost(req);
@@ -212,4 +216,29 @@ class PostServiceTest {
         assertThat(findPost.getTitle()).isEqualTo(req.getTitle());
         assertThat(findPost.getContent()).isEqualTo(req.getContent());
     }
+
+    @DisplayName("마이페이지 최근 게시물 3개")
+    @Test
+    void myPageMainPostTest() {
+        //Given
+
+        //When&Then
+        List<PostDataResponse> list = postService.myPageMainPost();
+
+        list.forEach(p -> log.info("list : {}", p));
+        assertThat(list.size()).isEqualTo(3);
+    }
+
+    @DisplayName("게시글 삭제")
+    @Test
+    void removePostTest() {
+        //Given
+
+        //When&Then
+        postService.removePost(5L);
+
+        Post post = postRepository.findById(5L).orElse(null);
+        assertThat(post).isNull();
+    }
+
 }
