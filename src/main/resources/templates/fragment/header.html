@@ -3,34 +3,100 @@
 
 <body>
 
-<header th:fragment="blogHeader (title)">
+<header th:fragment="baseHeader">
     <div class="inner">
-        <a href="/" class="logo">
-            <img src="./img/MyLog.png" alt="블로그로고"/>
+        <a href="/" th:href="@{/}" class="logo">
+            <img src="./img/MyLog.png" th:src="@{/img/MyLog.png}" alt="블로그로고"/>
         </a>
 
         <div class="title">
-            <a href="">
-                <span th:text="${title}">블로그타이틀</span>
+
+        </div>
+
+        <div class="sub-menu">
+            <ul class="menu" th:if="${session.loginMember == null}">
+                <li>
+                    <a href="/templates/auth/login.html"
+                       th:href="@{/user/login}">
+                        로그인
+                    </a>
+                </li>
+                <li>
+                    <a href="/templates/auth/join-agree.html"
+                       th:href="@{/user/join/agree}">
+                        회원가입
+                    </a>
+                </li>
+            </ul>
+            <ul class="menu" th:if="${session.loginMember != null}">
+                <li>
+                    <a href="" th:href="@{/blog/register}">글 쓰기</a>
+                </li>
+                <li>
+                    <a href="" th:href="@{/user/logout}">로그아웃</a>
+                </li>
+                <li>
+                    <a href="/templates/mypage/main.html"
+                       th:href="@{/user/mypage}">
+                        MyPage
+                    </a>
+                </li>
+                <li>
+                    <a href="/templates/blog/myblog.html"
+                       th:href="@{/blog/main}">
+                        MyBlog
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</header>
+
+<header th:fragment="blogHeader">
+    <div class="inner">
+        <a href="/" th:href="@{/}" class="logo">
+            <img src="./img/MyLog.png" th:src="@{/img/MyLog.png}" alt="블로그로고"/>
+        </a>
+
+        <div class="title">
+            <a href="javascript:void(0)">
+                <span th:text="${session.loginMember.blogName != null} ? ${session.loginMember.blogName} : ''">블로그타이틀</span>
             </a>
         </div>
 
         <div class="sub-menu">
-            <ul class="menu">
+            <ul class="menu" th:if="${session.loginMember == null}">
                 <li>
-                    <a href="">로그인</a>
+                    <a href="/templates/auth/login.html"
+                    th:href="@{/user/login}">
+                        로그인
+                    </a>
                 </li>
                 <li>
-                    <a href="">로그아웃</a>
+                    <a href="/templates/auth/join-agree.html"
+                    th:href="@{/user/join/agree}">
+                        회원가입
+                    </a>
+                </li>
+            </ul>
+            <ul class="menu" th:if="${session.loginMember != null}">
+                <li>
+                    <a href="" th:href="@{/blog/register}">글 쓰기</a>
                 </li>
                 <li>
-                    <a href="">회원가입</a>
+                    <a href="" th:href="@{/user/logout}">로그아웃</a>
                 </li>
                 <li>
-                    <a href="">MyPage</a>
+                    <a href="/templates/mypage/main.html"
+                    th:href="@{/user/mypage}">
+                        MyPage
+                    </a>
                 </li>
                 <li>
-                    <a href="">MyBlog</a>
+                    <a href="/templates/blog/myblog.html"
+                    th:href="@{/blog/main}">
+                        MyBlog
+                    </a>
                 </li>
             </ul>
         </div>

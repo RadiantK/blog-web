@@ -5,7 +5,7 @@
 </head>
 <body>
   <!-- HEADER -->
-  <div th:replace="~{/fragment/header :: blogHeader ('블로그타이틀')}"></div>
+  <div th:replace="~{/fragment/header :: blogHeader}"></div>
 
 
   <!-- post -->
@@ -47,7 +47,7 @@
         </div>
       </div>
 
-      <div class="page">
+      <div class="page" th:if="${!posts.isEmpty()}">
         <div class="material-icons" th:if="${pagination.startPage > 1}">
           <a href="" th:href="@{/blog/main(page=${pagination.startPage - 1}, search=${search})}">first_page</a>
         </div>

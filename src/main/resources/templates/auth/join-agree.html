@@ -5,7 +5,7 @@
 </head>
 <body>
   <!-- HEADER -->
-  <div th:replace="~{/fragment/header :: blogHeader ('블로그타이틀')}"></div>
+  <div th:replace="~{/fragment/header :: baseHeader}"></div>
 
 
   <section class="same">
@@ -56,7 +56,6 @@
 
     checkBtnEl.addEventListener('click', function() {
       let checked = inputEl.checked;
-      console.log(checked);
       if (checked == false) {
         alert('이용약관에 동의해주세요.');
         return;

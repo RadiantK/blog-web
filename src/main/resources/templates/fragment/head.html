@@ -20,10 +20,28 @@
             href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"/>
     <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
 
-    <link rel="stylesheet" href="./css/common.css" />
-    <link rel="stylesheet" href="./css/index.css" />
+    <link rel="stylesheet" href="./css/common.css" th:href="@{/css/common.css}"/>
+    <link rel="stylesheet" href="./css/index.css" th:href="@{/css/index.css}"/>
 
-    <script defer src="./js/main.js"></script>
+    <script defer src="./js/main.js" th:src="@{/js/main.js}"></script>
+</head>
+
+<head th:fragment="joinMainHead (css)">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyLog</title>
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700&display=swap" rel="stylesheet" />
+
+    <!-- material-icons -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="./css/common.css" th:href="@{/css/common.css}" />
+    <link rel="stylesheet" href="./css/mypage-blog.css" th:href="@{${css}}"/>
+
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 </head>
 
 
@@ -39,8 +57,8 @@
 
     <!-- material-icons -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="./css/common.css" />
-    <link rel="stylesheet" href="./css/mypage-blog.css" th:href="${css}"/>
+    <link rel="stylesheet" href="./css/common.css" th:href="@{/css/common.css}" />
+    <link rel="stylesheet" href="./css/mypage-blog.css" th:href="@{${css}}"/>
 </head>
 
 
@@ -56,8 +74,8 @@
 
     <!-- material-icons -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="./css/common.css" />
-    <link rel="stylesheet" href="./css/regist.css" th:href="${css}" />
+    <link rel="stylesheet" href="./css/common.css" th:href="@{/css/common.css}" />
+    <link rel="stylesheet" href="./css/regist.css" th:href="@{${css}}" />
 
     <!-- text editor CKEditor5 -->
     <script src="https://cdn.ckeditor.com/ckeditor5/35.2.0/classic/ckeditor.js"></script>
