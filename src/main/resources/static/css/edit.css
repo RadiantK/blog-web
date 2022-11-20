@@ -71,7 +71,10 @@
   overflow-y: hidden; /* prevents scroll bar flash */
   margin-bottom: 180px;
 }
-
+.ck-editor__editable {
+  min-height: 1000px;
+  margin-bottom: 200px;
+}
 .detail .change {
   position: fixed;
   background-color: #fff;

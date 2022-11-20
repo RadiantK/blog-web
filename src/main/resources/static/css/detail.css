@@ -137,17 +137,39 @@
 }
 
 .detail .comment__title {
-  font-size: 20px;
+  font-size: 24px;
   font-weight: 700;
+  margin-bottom: 12px;
 }
 .detail .comment-regist {
   display: flex;
   margin-bottom: 80px;
 }
+.detail .user {
+  margin-bottom: 12px;
+}
+.detail .user label{
+  display: inline-block;
+  font-size: 24px;
+  margin-right: 8px;
+}
+.detail .user input {
+  width: 29%;
+  height: 20px;
+  font-size: 20px;
+  padding: 4px;
+}
+.detail .user #writer{
+  margin-right: 24px;
+}
 .detail .comment-regist .comment__write {
   resize: none;
   width: 80%;
   height: 160px;
+  padding: 4px;
+  box-sizing: border-box;
+  font-size: 20px;
+  margin-right: 10px;
 }
 .detail .comment-regist .comment__btn {
   width: 20%;

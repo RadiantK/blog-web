@@ -88,6 +88,10 @@
 .post .page a {
   color: #333;
 }
+.post .page a.blue {
+  font-weight: 700;
+  color: #1e1edd;
+}
 .post .page .material-icons {
   padding: 5px;
 }

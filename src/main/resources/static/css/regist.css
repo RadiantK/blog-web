@@ -29,6 +29,10 @@
   margin-bottom: 5px;
   border: none;
 }
+.detail .head .title .title-error,
+.detail .head .title .content-error{
+  color: #FF0000;
+}
 .detail .head ul.info {
   display: flex;
   padding-bottom: 30px;
@@ -62,10 +66,17 @@
   margin: 60px 0;
 }
 .detail .content .text {
-
+  font-size: 20px;
+  resize: none;
+  width: 100%;
+  box-sizing: border-box;
+  min-height: 1000px;
+  padding: 20px;
+  overflow-y: hidden; /* prevents scroll bar flash */
+  margin-bottom: 180px;
 }
 .ck-editor__editable {
-	min-height: 1000px;
+  min-height: 1000px;
   margin-bottom: 200px;
 }
 

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="~{/fragment/head :: otherEditorHead('./css/edit.css')}">
+<head th:replace="~{/fragment/head :: otherEditorHead('/css/edit.css')}">
 
 </head>
 <body>
@@ -12,28 +12,32 @@
   <!-- post -->
   <section class="detail">
     <div class="inner">
-      <form>
+      <form action="" th:action="@{/blog/{postId}/edit (postId=${post.postId})}" method="post">
+        <input type="hidden" name="postId" th:value="${post.postId}"/>
         <div class="head">
           <div class="category">
             <span>Category</span>
-            <select name="" id="" class="choose">
-              <option value="">카테고리1</option>
-              <option value="">카테고리2</option>
+            <select name="categoryId" class="choose">
+              <option value="1"
+                      th:each="category : ${post.category}"
+                      th:value="${category.id}"
+                      th:text="${category.name}">
+                카테고리1
+              </option>
             </select>
           </div>
           <div class="title">
-            <input type="text" name="" id="" placeholder="제목을 입력하세요.">
+            <input type="text" name="title" id="title" th:value="${post.title}" placeholder="제목을 입력하세요.">
           </div>
-
         </div>
   
         <div class="content">
-          <div id="ckeditor" class="text"></div>
+          <textarea id="ckeditor" class="text ckeditor" name="content" onkeydown="resize(this)" th:text="${post.content}"></textarea>
         </div>
 
         <div class="change">
           <div class="btn-group">
-            <button class="cancel">취소</button>
+            <button type="button" class="cancel" >취소</button>
             <button class="modify">수정</button>
           </div>
         </div>
@@ -43,27 +47,32 @@
   </section>
 
   <script>
-    // function resize(obj) {
-    //   obj.style.height = "auto";
-    //   obj.style.height = (12 + obj.scrollHeight)+"px";
-    // }
+    function resize(obj) {
+      obj.style.height = "auto";
+      obj.style.height = (12 + obj.scrollHeight)+"px";
+    }
 
-    ClassicEditor
-            .create( document.querySelector('#ckeditor'), {
-              ckfinder: {
-                uploadUrl : '/image/upload'
-              },
-              alignment: {
-                options: [ 'left', 'center', 'right' ]
-              }
-            })
-            .then(editor => {
-              window.ckeditor = editor;
-              console.log(editor);
-            })
-            .catch(error => {
-              console.error( error );
-            });
+    const cancelBtnEl = document.querySelector('.cancel');
+    cancelBtnEl.addEventListener('click', function() {
+      history.back();
+    })
+
+    // ClassicEditor
+    //         .create( document.querySelector('.ckeditor'), {
+    //           ckfinder: {
+    //             uploadUrl : '/image/upload'
+    //           },
+    //           alignment: {
+    //             options: [ 'left', 'center', 'right' ]
+    //           }
+    //         })
+    //         .then(editor => {
+    //           window.ckeditor = editor;
+    //           console.log(editor);
+    //         })
+    //         .catch(error => {
+    //           console.error( error );
+    //         });
   </script>
 </body>
 </html>

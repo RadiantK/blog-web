@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="~{/fragment/head :: otherHead('./css/myblog.css')}">
+<head th:replace="~{/fragment/head :: otherHead('/css/myblog.css')}">
 
 </head>
 <body>
@@ -17,8 +17,8 @@
         </div>
         
         <div class="search">
-          <form action="">
-            <input type="text" />
+          <form action="" th:action="@{/blog/main}">
+            <input type="text" name="search"/>
             <button>
               <span class="material-icons">search</span>
             </button>
@@ -27,136 +27,50 @@
       </div>
 
       <div class="board-wrap">
-        <div class="board">
-          <a href="javascript:void(0)">
+        <div class="board" th:each="post : ${posts}">
+          <a href="javascript:void(0)" th:href="@{/blog/{postNum} (postNum=${post.id})}">
             <div class="list">
               <div class="title">
-                <div>[Thymeleaf] 타임리프 정리</div>
-                <div>2020-02-02</div>
+                <div th:text="${post.title}">[Thymeleaf] 타임리프 정리</div>
+                <div th:text="${#temporals.format(post.createdAt, 'yyyy-MM-dd HH:mm')}">2020-02-02</div>
               </div>
-              <div class="content">
-                aewfwafwaefwafwafwaaewfwafwaefwafwafwa
-                aewfwafwaefwafwafwaaewfwafwaefwafwafwa<br/>
+              <div class="content" th:text="${post.content}">
                 aewfwafwaefwafwafwaaewfwafwaefwafwafwa
                 aewfwafwaefwafwafwaaewfwafwaefwafwafwa
               </div>
             </div>
-    
+
             <div class="board-img">
               <div class="post-img"></div>
             </div>
           </a>
         </div>
-
-        <div class="board">
-          <a href="javascript:void(0)">
-            <div class="list">
-              <div class="title">
-                <div>[Thymeleaf] 타임리프 정리</div>
-                <div>2020-02-02</div>
-              </div>
-              <div class="content">
-                aewfwafwaefwafwafwaaewfwafwaefwafwafwa
-                aewfwafwaefwafwafwaaewfwafwaefwafwafwa<br/>
-                aewfwafwaefwafwafwaaewfwafwaefwafwafwa
-                aewfwafwaefwafwafwaaewfwafwaefwafwafwa
-              </div>
-            </div>
-    
-            <div class="board-img">
-              <div class="post-img"></div>
-            </div>
-          </a>
-        </div>
-
-        <div class="board">
-          <a href="javascript:void(0)">
-            <div class="list">
-              <div class="title">
-                <div>[Thymeleaf] 타임리프 정리</div>
-                <div>2020-02-02</div>
-              </div>
-              <div class="content">
-                aewfwafwaefwafwafwaaewfwafwaefwafwafwa
-                aewfwafwaefwafwafwaaewfwafwaefwafwafwa<br/>
-                aewfwafwaefwafwafwaaewfwafwaefwafwafwa
-                aewfwafwaefwafwafwaaewfwafwaefwafwafwa
-              </div>
-            </div>
-    
-            <div class="board-img">
-              <div class="post-img"></div>
-            </div>
-          </a>
-        </div>
-
-        <div class="board">
-          <a href="javascript:void(0)">
-            <div class="list">
-              <div class="title">
-                <div>[Thymeleaf] 타임리프 정리</div>
-                <div>2020-02-02</div>
-              </div>
-              <div class="content">
-                aewfwafwaefwafwafwaaewfwafwaefwafwafwa
-                aewfwafwaefwafwafwaaewfwafwaefwafwafwa<br/>
-                aewfwafwaefwafwafwaaewfwafwaefwafwafwa
-                aewfwafwaefwafwafwaaewfwafwaefwafwafwa
-              </div>
-            </div>
-    
-            <div class="board-img">
-              <div class="post-img"></div>
-            </div>
-          </a>
-        </div>
-
-        <div class="board">
-          <a href="javascript:void(0)">
-            <div class="list">
-              <div class="title">
-                <div>[Thymeleaf] 타임리프 정리</div>
-                <div>2020-02-02</div>
-              </div>
-              <div class="content">
-                aewfwafwaefwafwafwaaewfwafwaefwafwafwa
-                aewfwafwaefwafwafwaaewfwafwaefwafwafwa<br/>
-                aewfwafwaefwafwafwaaewfwafwaefwafwafwa
-                aewfwafwaefwafwafwaaewfwafwaefwafwafwa
-              </div>
-            </div>
-    
-            <div class="board-img">
-              <div class="post-img"></div>
-            </div>
-          </a>
-        </div>
-
       </div>
 
       <div class="page">
-        <div class="material-icons">
-          <a href="">first_page</a>
+        <div class="material-icons" th:if="${pagination.startPage > 1}">
+          <a href="" th:href="@{/blog/main(page=${pagination.startPage - 1}, search=${search})}">first_page</a>
         </div>
+        <div class="material-icons" th:if="${pagination.startPage <= 1}">
+          <span style="cursor: pointer" onclick="alert('이전 페이지가 없습니다.')">first_page</span>
+        </div>
+
         <ul>
-          <li>
-            <a href="javascript:void(0)">1</a>
+          <li th:each="page : ${#numbers.sequence(pagination.startPage, pagination.endPage)}">
+            <a href="javascript:void(0)"
+               th:href="@{/blog/main(page=${page}, search=${search})}"
+               th:text="${page}"
+               th:classappend="${page == pagination.page} ? 'blue' : ''">
+              1
+            </a>
           </li>
-          <li>
-            <a href="javascript:void(0)">2</a>
-          </li>
-          <li>
-            <a href="javascript:void(0)">3</a>
-          </li>
-          <li>
-            <a href="javascript:void(0)">4</a>
-          </li>
-          <li>
-            <a href="javascript:void(0)">5</a>
-          </li>
+
         </ul>
-        <div class="material-icons">
-          <a href="">last_page</a>
+        <div class="material-icons" th:if="${pagination.startPage + 5 <= pagination.totalPage}">
+          <a href="" th:href="@{/blog/main(page=${pagination.endPage + 1}, search=${search})}">last_page</a>
+        </div>
+        <div class="material-icons" th:if="${pagination.startPage + 5 > pagination.totalPage}">
+          <span style="cursor: pointer" onclick="alert('다음 페이지가 없습니다.')">last_page</span>
         </div>
       </div>
 

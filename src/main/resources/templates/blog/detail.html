@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="~{/fragment/head :: otherHead('./css/detail.css')}">
+<head th:replace="~{/fragment/head :: otherHead('/css/detail.css')}">
 
 </head>
 <body>
@@ -13,32 +13,43 @@
     <div class="inner">
       <div class="head">
         <div class="category">
-          <span>Spring</span>
+          <span th:text="${post.getCategory().getName()} ? ${post.getCategory().getName()} : '카테고리 없음'">Spring</span>
         </div>
         <div class="title">
-          <span>[Thymeleaf] 타임리프 정리</span>
+          <span th:text="${post.title}">[Thymeleaf] 타임리프 정리</span>
         </div>
         <ul class="info">
           <li class="writer">
-            <span>RadiantK</span>
+            <span th:text="${session.loginMember.email}">RadiantK</span>
           </li>
           <li class="date">
-            <span>2022. 9. 24. 02:41</span>
+            <span th:text="${#temporals.format(post.createdAt, 'yyyy.MM.dd HH:mm')}">
+              2022. 9. 24. 02:41
+            </span>
           </li>
           <li>
-            <span><a herf="javascript:void(0)">수정</a></span>
+            <span>
+              <a herf="javascript:void(0)"
+                th:if="${session.loginMember.email == post.member.email}"
+                th:href="@{/blog/{postId}/edit (postId=${post.postId})}">
+                수정
+              </a>
+            </span>
           </li>
           <li>
-            <span><a herf="javascript:void(0)">삭제</a></span>
+            <span>
+              <a herf="javascript:void(0)"
+                th:if="${session.loginMember.email == post.member.email}"
+                th:href="@{/blog/{postId}/remove (postId=${post.postId})}">
+                삭제
+              </a>
+            </span>
           </li>
         </ul>
       </div>
 
-      <div class="content">
+      <div class="content" th:text="${post.content}">
         <p>
-          내용내용내용내용내용내용내용내용내용내용내용내용
-          내용내용내용내용내용내용내용내용내용내용내용내용
-          내용내용내용내용내용내용내용내용내용내용내용내용
           내용내용내용내용내용내용내용내용내용내용내용내용
           내용내용내용내용내용내용내용내용내용내용내용내용
           내용내용내용내용내용내용내용내용내용내용내용내용
@@ -63,6 +74,7 @@
           </a>
         </div>
       </div>
+
 
       <div class="comment-list">
         <div class="comment">
@@ -118,7 +130,7 @@
           </div>
         </div>
 
-        <div class="page">
+<!--        <div class="page">
           <div class="material-icons">
             <a href="">first_page</a>
           </div>
@@ -142,15 +154,23 @@
           <div class="material-icons">
             <a href="">last_page</a>
           </div>
-        </div>
+        </div>-->
 
       </div>
 
       <div class="comment__title">댓글 쓰기</div>
-      <div class="comment-regist">
-        <textarea class="comment__write"></textarea>
-        <button class="comment__btn">등록</button>
-      </div>
+      <form>
+        <div class="user">
+          <label for="writer">작성자</label>
+          <input type="text" id="writer">
+          <label for="password">비밀번호</label>
+          <input type="text" id="password">
+        </div>
+        <div class="comment-regist">
+          <textarea class="comment__write"></textarea>
+          <button class="comment__btn" type="button">등록</button>
+        </div>
+      </form>
     </div>
   </section>
 
