@@ -1,8 +1,5 @@
 package com.mylog.post.controller.api;
 
-import com.mylog.global.argumentResolver.LoginMember;
-import com.mylog.member.dto.MemberLoginResponse;
-import com.mylog.post.domain.Category;
 import com.mylog.post.dto.CategoryDataResponse;
 import com.mylog.post.dto.CategorySaveRequest;
 import com.mylog.post.service.CategoryService;
@@ -12,9 +9,10 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.util.StringUtils;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -26,9 +24,9 @@ public class ApiCategoryController {
 
     private final CategoryService categoryService;
 
-    @GetMapping("/category")
-    public ResponseEntity<List<CategoryDataResponse>> allCategory(@LoginMember MemberLoginResponse member) {
-        List<CategoryDataResponse> list = categoryService.findAllCategory(member.getEmail())
+    @GetMapping("/category/{email}")
+    public ResponseEntity<List<CategoryDataResponse>> allCategory(@PathVariable String email) {
+        List<CategoryDataResponse> list = categoryService.findAllCategory(email)
                 .stream()
                 .map(c -> CategoryDataResponse.of(c))
                 .collect(Collectors.toList());
@@ -37,17 +35,18 @@ public class ApiCategoryController {
     }
 
     @PostMapping("/category")
-    @ResponseStatus(HttpStatus.CREATED)
-    public CategoryResult addCategoryName(@RequestBody CategorySaveRequest category) {
+    public ResponseEntity<CategoryResult> addCategoryName(@Valid @RequestBody CategorySaveRequest category, BindingResult bindingResult) {
         log.info("name : {}", category);
-        if (!StringUtils.hasText(category.getName())) {
-            throw new IllegalArgumentException("카테고리명을 입력하세요.");
+
+        if (bindingResult.hasErrors()) {
+            return ResponseEntity.badRequest().body(CategoryResult.builder()
+                    .result("닉네임을 입력해주세요.")
+                    .build());
         }
         categoryService.saveCategory(category);
 
-        return CategoryResult.builder()
-                .result("success")
-                .build();
+        return new ResponseEntity(CategoryResult.builder().result("success").build(),
+                HttpStatus.CREATED);
     }
 
     @DeleteMapping("/category/{id}")
@@ -67,4 +66,5 @@ public class ApiCategoryController {
     static class CategoryResult {
         private String result;
     }
+
 }
