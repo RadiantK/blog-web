@@ -64,7 +64,8 @@
     }
 
     async function categories() {
-      const data = await fetch('http://localhost:8080/mylog.com/api/mypage/category')
+      let email = [[${session.loginMember.email}]]
+      const data = await fetch('http://localhost:8080/mylog.com/api/mypage/category/'+ email)
               .then(response => response.json())
               .then(data => data);
 

@@ -13,7 +13,7 @@
     <div class="inner">
       <div class="head">
         <div class="category">
-          <span th:text="${post.getCategory().getName()} ? ${post.getCategory().getName()} : '카테고리 없음'">Spring</span>
+          <span th:if="${post.getCategory()} != null" th:text="${post.getCategory().getName()}">Spring</span>
         </div>
         <div class="title">
           <span th:text="${post.title}">[Thymeleaf] 타임리프 정리</span>

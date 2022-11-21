@@ -15,9 +15,8 @@
         <div class="head">
           <div class="category">
             <span>Category</span>
-            <select name="categoryId" class="choose" th:if="${categories != null}">
-              <option value="카테고리"
-                      th:each="category : ${categories}"
+            <select name="categoryId" th:field="*{categoryId}" class="choose" th:if="${categories != null}">
+              <option th:each="category : ${categories}"
                       th:text="${category.name}"
                       th:value="${category.id}">
                 카테고리1
@@ -25,7 +24,7 @@
             </select>
           </div>
           <div class="title">
-            <input type="text" name="title" id="" placeholder="제목을 입력하세요.">
+            <input type="text" name="title" th:field="*{title}" id="" placeholder="제목을 입력하세요.">
             <div class="title-error" th:errors="*{title}"></div>
             <div class="content-error" th:errors="*{content}"></div>
           </div>
@@ -33,7 +32,7 @@
         </div>
   
         <div class="content">
-          <textarea id="ckeditor" class="text ckeditor" name="content" onkeydown="resize(this)"></textarea>
+          <textarea id="ckeditor" class="text ckeditor" name="content" th:field="*{content}" onkeydown="resize(this)"></textarea>
         </div>
 
         <div class="change">
