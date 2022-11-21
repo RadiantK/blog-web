@@ -27,11 +27,11 @@ public class WebConfig implements WebMvcConfigurer {
                         "/", "/user/join/**", "/user/login", "/user/logout", "/user/help/**",
                         "/api/**");
 
-        registry.addInterceptor(new BlogNameCheckInterceptor())
-                .order(2)
-                .addPathPatterns("/**")
-                .excludePathPatterns("/css/**", "/img/**", "/js/**", "/*.ico", "/error",
-                        "/", "/user/join/**", "/user/login", "/user/logout", "/user/help/**",
-                        "/user/mypage/blog", "/api/**");
+//        registry.addInterceptor(new BlogNameCheckInterceptor())
+//                .order(2)
+//                .addPathPatterns("/**")
+//                .excludePathPatterns("/css/**", "/img/**", "/js/**", "/*.ico", "/error",
+//                        "/", "/user/join/**", "/user/login", "/user/logout", "/user/help/**",
+//                        "/user/mypage/blog", "/api/**");
     }
 }
