@@ -47,7 +47,7 @@ class PostServiceTest {
 
     Member member;
     Category category;
-    String email = "test@test.com";
+    String email = "test4@test.com";
 
     @BeforeEach
     void setUp() {
