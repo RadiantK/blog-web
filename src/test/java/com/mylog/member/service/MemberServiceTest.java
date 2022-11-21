@@ -36,6 +36,8 @@ class MemberServiceTest {
     @Autowired
     private EntityManager em;
 
+    String email = "testset@.com";
+
     @DisplayName("단일 회원 조회 테스트")
     @Test
     void findMemberTest() {
@@ -65,7 +67,7 @@ class MemberServiceTest {
     void saveMemberTest() {
         //Given
         MemberJoinRequest request = new MemberJoinRequest();
-        request.setEmail("test@test.com");
+        request.setEmail("email");
         request.setPassword("!asdf1234");
         request.setPasswordConfirm("!asdf1234");
         request.setName("김자바");
@@ -87,7 +89,7 @@ class MemberServiceTest {
     void dupleSaveMemberTest() {
         //Given
         MemberJoinRequest dupleMember = new MemberJoinRequest();
-        dupleMember.setEmail("test@test.com");
+        dupleMember.setEmail("email");
         dupleMember.setPassword("!asdf1234");
         dupleMember.setPasswordConfirm("!asdf1234");
         dupleMember.setName("중복회원");
@@ -108,7 +110,7 @@ class MemberServiceTest {
     void WrongPasswordJoinTest() {
         //Given
         MemberJoinRequest request = new MemberJoinRequest();
-        request.setEmail("test@test.com");
+        request.setEmail("email");
         request.setPassword("!test1234");
         request.setPasswordConfirm("test1234");
         request.setName("테스트");
@@ -172,7 +174,7 @@ class MemberServiceTest {
         //Given
         Member member = memberService.join(getMemberJoinRequest());
         MemberLoginRequest request = new MemberLoginRequest();
-        request.setEmail("test@test.com");
+        request.setEmail("email");
         request.setPassword("!asdf1234");
 
         //When
@@ -189,7 +191,7 @@ class MemberServiceTest {
         //Given
         Member member = memberService.join(getMemberJoinRequest());
         MemberLoginRequest request = new MemberLoginRequest();
-        request.setEmail("ttest@test.com");
+        request.setEmail("temail");
         request.setPassword("!asdf1234");
 
         //When&Then
@@ -203,7 +205,7 @@ class MemberServiceTest {
         //Given
         Member member = memberService.join(getMemberJoinRequest());
         MemberLoginRequest request = new MemberLoginRequest();
-        request.setEmail("test@test.com");
+        request.setEmail("email");
         request.setPassword("!asdf21234");
 
         //When&Then
@@ -213,7 +215,7 @@ class MemberServiceTest {
 
     private MemberJoinRequest getMemberJoinRequest() {
         MemberJoinRequest memberJoinRequest = new MemberJoinRequest();
-        memberJoinRequest.setEmail("test@test.com");
+        memberJoinRequest.setEmail("email");
         memberJoinRequest.setPassword("!asdf1234");
         memberJoinRequest.setPasswordConfirm("!asdf1234");
         memberJoinRequest.setName("김자바");

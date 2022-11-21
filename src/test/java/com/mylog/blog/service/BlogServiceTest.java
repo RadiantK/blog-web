@@ -38,7 +38,7 @@ class BlogServiceTest {
     private EntityManager em;
 
     Member member;
-    String email = "test@test.com";
+    String email = "ttest@test.com";
 
     @BeforeEach
     void setUp() {
