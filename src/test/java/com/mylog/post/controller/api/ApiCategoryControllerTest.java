@@ -21,11 +21,11 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.transaction.annotation.Transactional;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-@Disabled
 @WebMvcTest(value = ApiCategoryController.class, excludeAutoConfiguration = SecurityAutoConfiguration.class)
 @Slf4j
 class ApiCategoryControllerTest {
@@ -49,6 +49,7 @@ class ApiCategoryControllerTest {
     Member member;
     String email = "temp";
 
+    @Transactional
     void setup() {
         if (memberRepository.findByEmailAndEnabled(email, 1).orElse(null) != null) {
             member = Member.builder()

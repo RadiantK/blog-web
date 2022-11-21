@@ -36,7 +36,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @AutoConfigureMockMvc
 @SpringBootTest
-@Transactional
 //@WebMvcTest(BlogMainController.class)
 class BlogMainControllerTest {
 
@@ -95,6 +94,7 @@ class BlogMainControllerTest {
         memberLogin();
     }
 
+    @Transactional
     private void memberJoin() {
         Member member = memberService.findMember(email);
 
