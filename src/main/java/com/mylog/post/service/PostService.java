@@ -42,6 +42,20 @@ public class PostService {
                 PageRequest.of(request.getPage() - 1, request.getPagingSize()));
     }
 
+    // 마이페이지 게시글 관리 페이지 페이징 처리
+    public Page<PostAndCategoryResponse> postAndCategoryPaging(PostDataRequest request) {
+        Member member = getMember(request.getEmail());
+
+        if (request.getSearch() == null) {
+            request.setSearch("");
+        }
+
+        return postRepository.findPostAndCategoryAll(
+                member,
+                "%" + request.getSearch() + "%",
+                PageRequest.of(request.getPage() - 1, request.getPagingSize()));
+    }
+
     public List<PostDataResponse> myPageMainPost() {
         List<Post> post = postRepository.findTop3ByOrderByIdDesc();
         List<PostDataResponse> list = post.stream()

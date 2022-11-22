@@ -5,6 +5,7 @@ import com.mylog.blog.dto.BlogRequest;
 import com.mylog.blog.service.BlogService;
 import com.mylog.global.argumentResolver.LoginMember;
 import com.mylog.global.common.Constant;
+import com.mylog.global.common.Pagination;
 import com.mylog.member.domain.GenderType;
 import com.mylog.member.domain.Member;
 import com.mylog.member.dto.MemberEditInfo;
@@ -13,19 +14,19 @@ import com.mylog.member.exception.DuplicatedMemberException;
 import com.mylog.member.exception.WrongPasswordException;
 import com.mylog.member.service.MemberService;
 import com.mylog.post.domain.Category;
+import com.mylog.post.dto.PostAndCategoryResponse;
+import com.mylog.post.dto.PostDataRequest;
 import com.mylog.post.dto.PostDataResponse;
 import com.mylog.post.service.CategoryService;
 import com.mylog.post.service.PostService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -61,7 +62,23 @@ public class MyPageController {
     }
 
     @GetMapping("/post")
-    public String postManagementPage() {
+    public String postManagementPage(@LoginMember MemberLoginResponse member,
+                           @RequestParam(required = false) String search,
+                           @RequestParam(defaultValue = "1") Integer page,
+                           Model model) {
+
+        PostDataRequest req = new PostDataRequest();
+        req.setEmail(member.getEmail());
+        req.setSearch(search);
+        req.setPage(page);
+        req.setPagingSize(10);
+
+        Page<PostAndCategoryResponse> posts = postService.postAndCategoryPaging(req);
+        Pagination pagination = new Pagination(page, posts.getTotalPages());
+
+        model.addAttribute("posts", posts.toList());
+        model.addAttribute("pagination", pagination);
+        model.addAttribute("search", search);
 
         return "mypage/write";
     }
@@ -122,17 +139,17 @@ public class MyPageController {
                                        @Valid MemberEditInfo memberEditInfo,
                                        BindingResult bindingResult) {
 
+        log.info("memberEditInfo : {}", memberEditInfo);
         memberEditInfo.setEmail(member.getEmail());
         try {
             memberService.updateMember(memberEditInfo);
         } catch (WrongPasswordException e) {
             bindingResult.addError(new FieldError("memberEditInfo", "passwordConfirm", "비밀번호와 비밀번호 확인이 일치하지 않습니다."));
-            return "auth/join-main";
         }
 
-//        if (bindingResult.hasErrors()) {
-//            return "auth/join-main";
-//        }
+        if (bindingResult.hasErrors()) {
+            return "mypage/edit";
+        }
 
         return "redirect:/user/mypage";
     }
