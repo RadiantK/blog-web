@@ -95,7 +95,7 @@ public class MemberController {
         log.info("url : {}", url);
         log.info("memberLoginRequest : {}", memberLoginRequest);
 
-        MemberLoginResponse memberLoginResponse;
+        MemberLoginResponse memberLoginResponse = null;
         try {
             memberLoginResponse = memberLoginService.login(memberLoginRequest);
         } catch(MemberNotFoundException | WrongPasswordException e) {
