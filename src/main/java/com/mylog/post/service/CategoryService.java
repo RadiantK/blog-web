@@ -50,6 +50,10 @@ public class CategoryService {
 
     public void removeCategory(Long id) {
         Category category = categoryRepository.findById(id).orElse(null);
+        System.out.println("category = " + category);
+        if (category == null) {
+            throw new IllegalStateException("해당 카테고리가 존재하지 않습니다.");
+        }
 
         categoryRepository.delete(category);
     }
