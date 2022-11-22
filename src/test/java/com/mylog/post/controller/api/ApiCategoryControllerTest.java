@@ -1,27 +1,17 @@
 package com.mylog.post.controller.api;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.mylog.member.domain.Address;
-import com.mylog.member.domain.GenderType;
-import com.mylog.member.domain.Member;
-import com.mylog.member.domain.RoleType;
-import com.mylog.member.repository.MemberRepository;
-import com.mylog.post.domain.Category;
-import com.mylog.post.domain.Post;
 import com.mylog.post.dto.CategorySaveRequest;
-import com.mylog.post.repository.CategoryRepository;
 import com.mylog.post.service.CategoryService;
 import lombok.extern.slf4j.Slf4j;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.transaction.annotation.Transactional;
+import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -39,41 +29,7 @@ class ApiCategoryControllerTest {
     @MockBean
     private CategoryService categoryService;
 
-    @MockBean
-    private PasswordEncoder passwordEncoder;
-    @MockBean
-    private MemberRepository memberRepository;
-    @MockBean
-    private CategoryRepository categoryRepository;
-
-    Member member;
     String email = "temp";
-
-    @Transactional
-    void setup() {
-        if (memberRepository.findByEmailAndEnabled(email, 1).orElse(null) != null) {
-            member = Member.builder()
-                    .email(email)
-                    .password(passwordEncoder.encode("1234"))
-                    .name("김자바")
-                    .gender(GenderType.MALE)
-                    .phone("010-1234-4564")
-                    .address(new Address("1234", "서울시", "22층"))
-                    .role(RoleType.ROLE_MEMBER)
-                    .enabled(1)
-                    .build();
-
-            memberRepository.save(member);
-
-            Category category = new Category("db", member);
-            Category category2 = new Category("spring", member);
-            Category category3 = new Category("data", member);
-            categoryRepository.save(category);
-            categoryRepository.save(category2);
-            categoryRepository.save(category3);
-        }
-
-    }
 
     @Test
     void allCategory() throws Exception {
@@ -91,7 +47,6 @@ class ApiCategoryControllerTest {
     @Test
     void addCategoryName() throws Exception {
         //Given
-        setup();
 
         CategorySaveRequest request = new CategorySaveRequest();
         request.setEmail(email);
@@ -108,12 +63,12 @@ class ApiCategoryControllerTest {
     @Test
     void removeCategory() throws Exception {
         //Given
-        setup();
 
         //When&Then
         mockMvc.perform(delete("/api/mypage/category/"+3L)
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.result").value("success"));
+                .andExpect(jsonPath("$.result").value("success"))
+        .andDo(MockMvcResultHandlers.print());
     }
 }
