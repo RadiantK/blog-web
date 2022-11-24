@@ -56,10 +56,10 @@
             <span th:each="type : ${genders}">
               <input type="radio" name="gender" th:field="*{gender}" value="male" th:value="${type.name()}" th:checked="${type.name() eq 'MALE'}">
               <label th:for="${#ids.prev('gender')}" th:text="${type.description}">남자</label>
-              <!--<input type="radio" name="gender" id="male" value="male" checked>
+              <!--/* <input type="radio" name="gender" id="male" value="male" checked>
               <label for="male">남성</label>
               <input type="radio" name="gender" id="female" value="female">
-              <label for="female">여성</label> -->
+              <label for="female">여성</label> */-->
             </span>
             <div class="genderHelp help" th:errors="*{gender}">성별 오류</div>
           </div>

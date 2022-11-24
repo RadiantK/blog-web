@@ -31,7 +31,7 @@
         <div class="second">
           <div class="list" th:each="post : ${posts}">
             <div class="head">
-              <div class="category"><span th:text="${post.name}">Spring</span></div>
+              <div class="category"><span th:if="${post.getCategory()} != null" th:text="${post.name}">Spring</span></div>
               <div class="title"><span th:text="${post.title}">[Thymeleaf] 타임리프 정리</span></div>
             </div>
 

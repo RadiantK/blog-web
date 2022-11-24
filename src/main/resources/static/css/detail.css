@@ -20,6 +20,7 @@
 .detail .head ul.info {
   display: flex;
   padding-bottom: 30px;
+  padding-left: 0;
   border-bottom: 2px solid #333;
 }
 .detail .head ul.info li {
@@ -54,7 +55,7 @@
   resize: none;
   width: 100%;
   box-sizing: border-box;
-  min-height: 400px;
+  min-height: 800px;
   padding: 20px;
   overflow-y: hidden; /* prevents scroll bar flash */
 }
@@ -91,13 +92,12 @@
 .detail .comment-list .comment .user {
   display: flex;
 }
-.detail .comment-list .comment .user .writer {
+.detail .comment-list .comment .user .writer, .date {
+  width: 15%;
   margin-right: 24px;
 }
 .detail .comment-list .comment .change {
-  position: absolute;
-  top: 0;
-  right: 0;
+  display: flex;
 }
 .detail .comment-list .comment .change a {
   margin-right: 16px;
@@ -160,8 +160,13 @@
   padding: 4px;
 }
 .detail .user #writer{
+  height: 30px;
   margin-right: 24px;
 }
+.detail .user #password {
+  height: 30px;
+}
+
 .detail .comment-regist .comment__write {
   resize: none;
   width: 80%;

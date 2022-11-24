@@ -69,8 +69,6 @@
               .then(response => response.json())
               .then(data => data);
 
-      console.log(data);
-
       /* 카테고리 목록 지우기 */
       // let categoryListEl = document.querySelector('.category-list');
       let categoryListEl = document.querySelector('.second');
@@ -94,8 +92,8 @@
                 '</div>' +
                 '<div class="manage">' +
                 '  <div class="modify">' +
-                '    <a href="">수정</a>' +
-                '  </div>\n' +
+                // '    <a href="">수정</a>' +
+                '  </div>' +
                 '  <div class="delete">' +
                 '    <a href="javascript:removeCategory(' + data[i].id + ')">삭제</a>' +
                 '  </div>' +

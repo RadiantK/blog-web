@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="~{/fragment/head :: otherHead('/css/detail.css')}">
+<head th:replace="~{/fragment/head :: blogDetailHead('/css/detail.css')}">
 
 </head>
 <body>
@@ -56,6 +56,7 @@
         </p>
       </div>
 
+      <!--/*
       <div class="prev-next">
         <div class="next">
           <a href="">
@@ -76,6 +77,7 @@
       </div>
 
 
+
       <div class="comment-list">
         <div class="comment">
           <div class="user">
@@ -85,76 +87,21 @@
             <div class="date">
               작성일 : <span>2020-02-02 12:15:08</span>
             </div>
-          </div>
-          
-          <div class="change">
-            <a href="">수정</a>
-            <a href="">삭제</a>
-          </div>
-  
-          <div class="comm__content">
-            <p>
-              내용내용내용내용내용내용내용내용내용내용내용내용
-              내용내용내용내용내용내용내용내용내용내용내용내용
-              내용내용내용내용내용내용내용내용내용내용내용내용
-              내용내용내용내용내용내용내용내용내용내용내용내용
-              내용내용내용내용내용내용내용내용내용내용내용내용
-              내용내용내용내용내용내용내용내용내용내용내용내용
-            </p>
-          </div>
-        </div>
-        <div class="comment">
-          <div class="user">
-            <div class="writer">
-              작성자 : <span>감나무</span>
-            </div>
-            <div class="date">
-              작성일 : <span>2020-02-02 12:15:08</span>
-            </div>
-          </div>
-          
-          <div class="change">
-            <a href="">수정</a>
-            <a href="">삭제</a>
-          </div>
-  
-          <div class="comm__content">
-            <p>
-              내용내용내용내용내용내용내용내용내용내용내용내용
-              내용내용내용내용내용내용내용내용내용내용내용내용
-              내용내용내용내용내용내용내용내용내용내용내용내용
-              내용내용내용내용내용내용내용내용내용내용내용내용
-              내용내용내용내용내용내용내용내용내용내용내용내용
-              내용내용내용내용내용내용내용내용내용내용내용내용
-            </p>
-          </div>
-        </div>
 
-<!--        <div class="page">
-          <div class="material-icons">
-            <a href="">first_page</a>
+            <div class="change">
+              <a href="">수정</a>
+              <a href="">삭제</a>
+            </div>
+
           </div>
-          <ul>
-            <li>
-              <a href="javascript:void(0)">1</a>
-            </li>
-            <li>
-              <a href="javascript:void(0)">2</a>
-            </li>
-            <li>
-              <a href="javascript:void(0)">3</a>
-            </li>
-            <li>
-              <a href="javascript:void(0)">4</a>
-            </li>
-            <li>
-              <a href="javascript:void(0)">5</a>
-            </li>
-          </ul>
-          <div class="material-icons">
-            <a href="">last_page</a>
+
+          <div class="comm__content">
+            <p>
+              내용내용내용내용내용내용내용내용내용내용내용내용
+              내용내용내용내용내용내용내용내용내용내용내용내용
+            </p>
           </div>
-        </div>-->
+        </div>
 
       </div>
 
@@ -162,21 +109,23 @@
       <form>
         <div class="user">
           <label for="writer">작성자</label>
-          <input type="text" id="writer">
+          <input type="text" id="writer" placeholder="작성자 명을 입력하세요.">
           <label for="password">비밀번호</label>
-          <input type="text" id="password">
+          <input type="password" id="password" placeholder="비밀번호를 입력하세요" autocomplete="off">
         </div>
         <div class="comment-regist">
           <textarea class="comment__write"></textarea>
           <button class="comment__btn" type="button">등록</button>
         </div>
       </form>
+      */-->
     </div>
   </section>
 
 
   <!-- FOOTER -->
   <div th:replace="~{/fragment/footer :: blogFooter}"></div>
+
 
 </body>
 </html>

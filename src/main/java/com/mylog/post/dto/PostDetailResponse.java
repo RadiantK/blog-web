@@ -23,16 +23,6 @@ public class PostDetailResponse {
     private Member member;
 
     public static PostDetailResponse of(Post post) {
-        // 카테고리가 없을 때의 nullPointerException 방지
-//        if (post.getCategory() == null) {
-//            return new PostDetailResponse(
-//                    post.getId(),
-//                    post.getTitle(),
-//                    post.getContent(),
-//                    post.getCreatedAt(),
-//                    null
-//            );
-//        }
         return new PostDetailResponse(
                 post.getId(),
                 post.getTitle(),

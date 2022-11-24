@@ -1,10 +1,13 @@
 package com.mylog.post.domain;
 
+import com.mylog.comment.domain.Comment;
 import com.mylog.global.common.BaseEntity;
 import com.mylog.member.domain.Member;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
