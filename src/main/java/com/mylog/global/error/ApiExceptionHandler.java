@@ -1,5 +1,6 @@
 package com.mylog.global.error;
 
+import com.mylog.comment.exception.WrongCommentPasswordException;
 import com.mylog.member.exception.MemberNotFoundException;
 import com.mylog.post.exception.DuplicateCategoryNameException;
 import org.springframework.http.HttpStatus;
@@ -32,6 +33,15 @@ public class ApiExceptionHandler {
     @ExceptionHandler
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ErrorResult memberNotFoundException(MemberNotFoundException e) {
+        return ErrorResult.builder()
+                .code(HttpStatus.BAD_REQUEST.value())
+                .message(e.getMessage())
+                .build();
+    }
+
+    @ExceptionHandler
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ErrorResult WrongCommentPasswordException(WrongCommentPasswordException e) {
         return ErrorResult.builder()
                 .code(HttpStatus.BAD_REQUEST.value())
                 .message(e.getMessage())

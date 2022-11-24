@@ -12,6 +12,7 @@ import com.mylog.post.repository.PostRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.PostConstruct;
 
@@ -24,6 +25,7 @@ public class TestInit {
     private final PostRepository postRepository;
     private final PasswordEncoder passwordEncoder;
 
+    @Transactional
     @PostConstruct
     public void init() {
         Member member = Member.builder()
