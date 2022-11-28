@@ -27,21 +27,18 @@
       </div>
 
       <div class="board-wrap">
+
         <div class="board" th:each="post : ${posts}">
           <a href="javascript:void(0)" th:href="@{/blog/{postNum} (postNum=${post.id})}">
             <div class="list">
               <div class="title">
-                <div th:text="${post.title}">[Thymeleaf] 타임리프 정리</div>
-                <div th:text="${#temporals.format(post.createdAt, 'yyyy-MM-dd HH:mm')}">2020-02-02</div>
-              </div>
-              <div class="content" th:text="${post.content}">
-                aewfwafwaefwafwafwaaewfwafwaefwafwafwa
-                aewfwafwaefwafwafwaaewfwafwaefwafwafwa
+                <div class="top" th:text="${post.title}">[Thymeleaf] 타임리프 정리</div>
+                <div class="date" th:text="${#temporals.format(post.createdAt, 'yyyy-MM-dd HH:mm')}">2020-02-02</div>
               </div>
             </div>
 
             <div class="board-img">
-              <div class="post-img"></div>
+              <img class="post-img" src="./img/main/slide2.jpg" th:src="@{/img/main/slide2.jpg}"/>
             </div>
           </a>
         </div>

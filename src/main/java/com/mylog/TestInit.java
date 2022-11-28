@@ -16,7 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.PostConstruct;
 
-@Component
+//@Component
 @RequiredArgsConstructor
 public class TestInit {
 
@@ -50,7 +50,7 @@ public class TestInit {
 
         for (int i = 1; i <= 7; i++) {
             Post post = Post.builder()
-                    .title("제목" + i)
+                    .title("블로그 게시글 : Spring" + i)
                     .content("내용" + i)
                     .member(member)
                     .category(category)

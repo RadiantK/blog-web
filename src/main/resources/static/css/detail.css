@@ -1,5 +1,6 @@
 .detail {
   margin-top: 110px;
+  min-height: 800px;
 }
 .detail .inner {
   padding-top: 50px;
@@ -20,7 +21,6 @@
 .detail .head ul.info {
   display: flex;
   padding-bottom: 30px;
-  padding-left: 0;
   border-bottom: 2px solid #333;
 }
 .detail .head ul.info li {
@@ -92,7 +92,7 @@
 .detail .comment-list .comment .user {
   display: flex;
 }
-.detail .comment-list .comment .user .writer, .date {
+.detail .comment-list .comment .user .writer .date {
   width: 15%;
   margin-right: 24px;
 }

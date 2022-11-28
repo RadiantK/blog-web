@@ -32,7 +32,7 @@
         </div>
   
         <div class="content">
-          <textarea id="ckeditor" class="text ckeditor" name="content" onkeydown="resize(this)" th:text="${post.content}"></textarea>
+          <textarea id="ckeditor" class="text ckeditor" name="content" th:utext="${post.content}"></textarea>
         </div>
 
         <div class="change">
@@ -47,32 +47,32 @@
   </section>
 
   <script>
-    function resize(obj) {
-      obj.style.height = "auto";
-      obj.style.height = (12 + obj.scrollHeight)+"px";
-    }
+    // function resize(obj) {
+    //   obj.style.height = "auto";
+    //   obj.style.height = (12 + obj.scrollHeight)+"px";
+    // }
 
     const cancelBtnEl = document.querySelector('.cancel');
     cancelBtnEl.addEventListener('click', function() {
       history.back();
     })
 
-    // ClassicEditor
-    //         .create( document.querySelector('.ckeditor'), {
-    //           ckfinder: {
-    //             uploadUrl : '/image/upload'
-    //           },
-    //           alignment: {
-    //             options: [ 'left', 'center', 'right' ]
-    //           }
-    //         })
-    //         .then(editor => {
-    //           window.ckeditor = editor;
-    //           console.log(editor);
-    //         })
-    //         .catch(error => {
-    //           console.error( error );
-    //         });
+    ClassicEditor
+            .create( document.querySelector('.ckeditor'), {
+              ckfinder: {
+                uploadUrl : '/image/upload'
+              },
+              alignment: {
+                options: [ 'left', 'center', 'right' ]
+              }
+            })
+            .then(editor => {
+              window.ckeditor = editor;
+              console.log(editor);
+            })
+            .catch(error => {
+              console.error( error );
+            });
   </script>
 </body>
 </html>

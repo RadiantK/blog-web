@@ -3,6 +3,7 @@ package com.mylog.post.controller;
 import com.mylog.global.argumentResolver.LoginMember;
 import com.mylog.global.common.Pagination;
 import com.mylog.member.dto.MemberLoginResponse;
+import com.mylog.post.domain.Category;
 import com.mylog.post.domain.Post;
 import com.mylog.post.dto.*;
 import com.mylog.post.repository.CategoryRepository;
@@ -16,6 +17,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
@@ -26,9 +28,13 @@ public class PostController {
     private final PostService postService;
     private final CategoryRepository categoryRepository;
 
+    @ModelAttribute("categories")
+    public List<Category> categories() {
+        return categoryRepository.findAll();
+    }
+
     @GetMapping("/register")
     public String postRegisterPage(Model model) {
-        model.addAttribute("categories", categoryRepository.findAll());
         model.addAttribute("postSaveRequest", new PostSaveRequest());
 
         return "blog/regist";
@@ -53,7 +59,14 @@ public class PostController {
     @GetMapping("/{postId}")
     public String postDetailPage(@PathVariable Long postId,
                                  Model model) {
-        PostDetailResponse postDetailResponse = postService.detailPost(postId);
+        PostDetailResponse postDetailResponse = null;
+        try {
+            postDetailResponse = postService.detailPost(postId);
+        } catch (Exception e) {
+            return "redirect:/blog/main";
+
+        }
+        log.info("PostDetailResponse.getContent : {}", postDetailResponse.getContent());
 
         model.addAttribute("post", postDetailResponse);
         return "blog/detail";

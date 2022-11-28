@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="~{/fragment/head :: blogDetailHead('/css/detail.css')}">
+<head th:replace="~{/fragment/head :: otherEditorHead('/css/detail.css')}">
 
 </head>
 <body>
@@ -48,7 +48,7 @@
         </ul>
       </div>
 
-      <div class="content" th:text="${post.content}">
+      <div class="content" th:utext="${post.content}">
         <p>
           내용내용내용내용내용내용내용내용내용내용내용내용
           내용내용내용내용내용내용내용내용내용내용내용내용

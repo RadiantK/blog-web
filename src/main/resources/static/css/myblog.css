@@ -38,10 +38,10 @@
   cursor: pointer;
 }
 .post .board-wrap .board {
-  padding: 40px 0;
+  padding: 40px 20px;
 }
 .post .board-wrap .board > a {
-  height: 230px;
+  height: 150px;
   display: flex;
   color: #333;
   transition: .3s;
@@ -54,14 +54,14 @@
   width: 70%;
 }
 .post .board-wrap .board .list .title {
-  display: flex;
-  font-size: 20px;
   font-weight: 700;
 }
-.post .board-wrap .board .list .title > div {
+.post .board-wrap .board .list .title > .top {
+  font-size: 32px;
   margin-right: 40px;
 }
-.post .board-wrap .board .list .title > div:last-child {
+.post .board-wrap .board .list .title > .date {
+  font-size: 24px;
   opacity: .5;
   margin-right: 0;
 }
@@ -71,13 +71,13 @@
 .post .board-wrap .board .board-img {
   width: 30%;
   padding-right: 0;
+  position: relative;
 }
 .post .board-wrap .board .board-img .post-img {
   height: 100%;
-  background-image: url(../img/main/slide2.jpg);
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+  margin: auto;
+  position: absolute;
+  right: 0;
 }
 
 .post .page {

@@ -32,7 +32,7 @@
         </div>
   
         <div class="content">
-          <textarea id="ckeditor" class="text ckeditor" name="content" th:field="*{content}" onkeydown="resize(this)"></textarea>
+          <textarea id="ckeditor" class="text ckeditor" th:field="*{content}"></textarea>
         </div>
 
         <div class="change">
@@ -47,27 +47,27 @@
   </section>
 
   <script>
-    function resize(obj) {
-      obj.style.height = "auto";
-      obj.style.height = (12 + obj.scrollHeight)+"px";
-    }
+    // function resize(obj) {
+    //   obj.style.height = "auto";
+    //   obj.style.height = (12 + obj.scrollHeight)+"px";
+    // }
 
-    // ClassicEditor
-    // .create( document.querySelector('.ckeditor'), {
-    //   ckfinder: {
-    //     uploadUrl : '/image/upload'
-    //   },
-    //   alignment: {
-    //     options: [ 'left', 'center', 'right' ]
-    //   }
-    // })
-    // .then(editor => {
-    //     window.ckeditor = editor;
-    //     console.log(editor);
-    // })
-    // .catch(error => {
-    //     console.error( error );
-    // });
+    ClassicEditor
+    .create( document.querySelector('.ckeditor'), {
+      ckfinder: {
+        uploadUrl : '/image/upload'
+      },
+      alignment: {
+        options: [ 'left', 'center', 'right' ]
+      }
+    })
+    .then(editor => {
+        window.ckeditor = editor;
+        console.log(editor);
+    })
+    .catch(error => {
+        console.error( error );
+    });
   </script>
 </body>
 </html>
