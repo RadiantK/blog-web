@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="~{/fragment/head :: otherHead('/css/join-agree.css')}">
+<head th:replace="~{fragment/head :: otherHead('/css/join-agree.css')}">
 
 </head>
 <body>
   <!-- HEADER -->
-  <div th:replace="~{/fragment/header :: baseHeader}"></div>
+  <div th:replace="~{fragment/header :: baseHeader}"></div>
 
 
   <section class="same">
@@ -34,7 +34,7 @@
           <input type="checkbox" id="agree"/><span> MyLog 이용약관 동의(*)</span>
         </div>
         <div>
-          <div th:replace="~{/fragment/the-same :: theSame}"></div>
+          <div th:replace="~{fragment/the-same :: theSame}"></div>
         </div>
       </div>
 
@@ -48,7 +48,7 @@
   </section>
 
   <!-- FOOTER -->
-  <div th:replace="~{/fragment/footer :: blogFooter}"></div>
+  <div th:replace="~{fragment/footer :: blogFooter}"></div>
 
   <script>
     const inputEl = document.querySelector('#agree');

@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="~{/fragment/head :: otherHead('/css/mypage-category.css')}">
+<head th:replace="~{fragment/head :: otherHead('/css/mypage-category.css')}">
 
 </head>
 <body>
   <!-- HEADER -->
-  <div th:replace="~{/fragment/header :: blogHeader}"></div>
+  <div th:replace="~{fragment/header :: blogHeader}"></div>
 
 
   <div class="mypage">
     <div class="inner">
-      <div th:replace="~{/fragment/menu :: subMenu}"></div>
+      <div th:replace="~{fragment/menu :: subMenu}"></div>
   
       <div class="part">
         <div class="first">
@@ -56,7 +56,7 @@
 
 
   <!-- FOOTER -->
-  <div th:replace="~{/fragment/footer :: blogFooter}"></div>
+  <div th:replace="~{fragment/footer :: blogFooter}"></div>
 
   <script th:inline="javascript">
     window.onload = function() {

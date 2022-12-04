@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="~{/fragment/head :: otherHead('/css/myblog.css')}">
+<head th:replace="~{fragment/head :: otherHead('/css/myblog.css')}">
 
 </head>
 <body>
   <!-- HEADER -->
-  <div th:replace="~{/fragment/header :: blogHeader}"></div>
+  <div th:replace="~{fragment/header :: blogHeader}"></div>
 
 
   <!-- post -->
@@ -76,7 +76,7 @@
 
 
   <!-- FOOTER -->
-  <div th:replace="~{/fragment/footer :: blogFooter}"></div>
+  <div th:replace="~{fragment/footer :: blogFooter}"></div>
 
 </body>
 </html>
