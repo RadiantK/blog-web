@@ -53,10 +53,6 @@ public class MemberController {
     public String joinMain(@Validated @ModelAttribute MemberJoinRequest memberJoinRequest,
                            BindingResult bindingResult) {
 
-//        if (memberJoinRequest.isPasswordEqualToPasswordConfirm() == false) {
-//            bindingResult.addError(new FieldError("memberJoinRequest", "passwordConfirm", "비밀번호와 비밀번호 확인이 일치하지 않습니다."));
-//        }
-
         try {
             memberService.join(memberJoinRequest);
         } catch (WrongPasswordException e) {

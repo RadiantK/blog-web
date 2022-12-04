@@ -1,13 +1,13 @@
 package com.mylog.post.domain;
 
-import com.mylog.comment.domain.Comment;
 import com.mylog.global.common.BaseEntity;
 import com.mylog.member.domain.Member;
-import lombok.*;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Getter

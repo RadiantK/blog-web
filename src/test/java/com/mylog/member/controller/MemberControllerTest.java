@@ -54,7 +54,7 @@ class MemberControllerTest {
     @Test
     void joinMain() throws Exception {
         mockMvc.perform(post("/user/join/main")
-                .param("email", "abc@abc.com")
+                .param("email", "aaabc@abc.com")
                 .param("password", "!abcd1234")
                 .param("passwordConfirm", "!abcd1234")
                 .param("name", "김이름")

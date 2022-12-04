@@ -1,7 +1,6 @@
 package com.mylog.post.domain;
 
 import com.mylog.member.domain.Member;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;

@@ -1,8 +1,10 @@
 package com.mylog.member.domain;
 
-import com.mylog.blog.domain.Blog;
 import com.mylog.global.common.BaseEntity;
-import lombok.*;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.*;
 
@@ -10,7 +12,6 @@ import javax.persistence.*;
 @Getter
 @NoArgsConstructor
 @ToString
-@EqualsAndHashCode
 public class Member extends BaseEntity {
 
     @Id

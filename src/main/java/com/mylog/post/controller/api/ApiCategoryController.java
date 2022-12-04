@@ -17,8 +17,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequiredArgsConstructor
 @RequestMapping("/api/mypage")
+@RequiredArgsConstructor
 @Slf4j
 public class ApiCategoryController {
 
@@ -35,7 +35,9 @@ public class ApiCategoryController {
     }
 
     @PostMapping("/category")
-    public ResponseEntity<CategoryResult> addCategoryName(@Valid @RequestBody CategorySaveRequest category, BindingResult bindingResult) {
+    public ResponseEntity<CategoryResult> addCategoryName(
+            @Valid @RequestBody CategorySaveRequest category,
+            BindingResult bindingResult) {
         log.info("name : {}", category);
 
         if (bindingResult.hasErrors()) {
@@ -50,14 +52,13 @@ public class ApiCategoryController {
     }
 
     @DeleteMapping("/category/{id}")
-    @ResponseStatus(HttpStatus.OK)
-    public CategoryResult removeCategory(@PathVariable Long id) {
+    public ResponseEntity<CategoryResult> removeCategory(@PathVariable Long id) {
         log.info("category : {}", id);
         categoryService.removeCategory(id);
 
-        return CategoryResult.builder()
+        return ResponseEntity.ok().body(CategoryResult.builder()
                 .result("success")
-                .build();
+                .build());
     }
 
 
