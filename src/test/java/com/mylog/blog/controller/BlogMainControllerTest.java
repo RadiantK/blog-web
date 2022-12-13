@@ -1,42 +1,30 @@
 package com.mylog.blog.controller;
 
-import com.mylog.blog.domain.Blog;
-import com.mylog.blog.dto.BlogRequest;
 import com.mylog.blog.service.BlogService;
 import com.mylog.global.common.Constant;
-import com.mylog.global.config.AppConfig;
-import com.mylog.global.config.JpaConfig;
-import com.mylog.global.config.WebConfig;
-import com.mylog.member.domain.Address;
 import com.mylog.member.domain.GenderType;
 import com.mylog.member.domain.Member;
-import com.mylog.member.domain.RoleType;
 import com.mylog.member.dto.MemberJoinRequest;
 import com.mylog.member.dto.MemberLoginRequest;
 import com.mylog.member.dto.MemberLoginResponse;
 import com.mylog.member.service.MemberLoginService;
 import com.mylog.member.service.MemberService;
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.annotation.Import;
 import org.springframework.mock.web.MockHttpSession;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.EntityManager;
-
-import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
+@Disabled
 @AutoConfigureMockMvc
 @SpringBootTest
-//@WebMvcTest(BlogMainController.class)
 class BlogMainControllerTest {
 
     @Autowired

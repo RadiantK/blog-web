@@ -7,6 +7,7 @@ import com.mylog.member.domain.GenderType;
 import com.mylog.member.domain.Member;
 import com.mylog.member.domain.RoleType;
 import lombok.extern.slf4j.Slf4j;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -19,6 +20,7 @@ import java.util.NoSuchElementException;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+@Disabled
 @Slf4j
 @DataJpaTest
 @Import({AppConfig.class, JpaConfig.class})

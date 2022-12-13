@@ -2,12 +2,16 @@ package com.mylog.member.service;
 
 import com.mylog.member.domain.GenderType;
 import com.mylog.member.domain.Member;
-import com.mylog.member.dto.*;
+import com.mylog.member.dto.MemberEditInfo;
+import com.mylog.member.dto.MemberJoinRequest;
+import com.mylog.member.dto.MemberLoginRequest;
+import com.mylog.member.dto.MemberLoginResponse;
 import com.mylog.member.exception.DuplicatedMemberException;
 import com.mylog.member.exception.MemberNotFoundException;
 import com.mylog.member.exception.WrongPasswordException;
 import com.mylog.member.repository.MemberRepository;
 import lombok.extern.slf4j.Slf4j;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +23,7 @@ import javax.persistence.EntityManager;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+@Disabled
 @SpringBootTest
 @Transactional
 @Slf4j

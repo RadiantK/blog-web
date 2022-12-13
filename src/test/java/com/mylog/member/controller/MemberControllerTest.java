@@ -1,29 +1,22 @@
 package com.mylog.member.controller;
 
-import com.mylog.global.common.Constant;
 import com.mylog.member.domain.GenderType;
 import com.mylog.member.domain.Member;
 import com.mylog.member.dto.MemberJoinRequest;
-import com.mylog.member.dto.MemberLoginRequest;
-import com.mylog.member.dto.MemberLoginResponse;
-import com.mylog.member.service.MemberLoginService;
 import com.mylog.member.service.MemberService;
-import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.mock.web.MockHttpSession;
 import org.springframework.test.web.servlet.MockMvc;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
+@Disabled
 @AutoConfigureMockMvc
 @SpringBootTest
 class MemberControllerTest {
