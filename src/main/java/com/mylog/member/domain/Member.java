@@ -1,12 +1,15 @@
 package com.mylog.member.domain;
 
 import com.mylog.global.common.BaseEntity;
+import com.mylog.post.domain.Post;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -43,6 +46,8 @@ public class Member extends BaseEntity {
 
     private Integer enabled; // 탈퇴 여부
 
+    @OneToMany(mappedBy = "member")
+    List<Post> posts = new ArrayList<>();
 
     @Builder
     public Member(String email, String password, String name, String phone, GenderType gender,

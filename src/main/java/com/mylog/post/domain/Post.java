@@ -32,12 +32,17 @@ public class Post extends BaseEntity {
     @JoinColumn(name = "member_id", nullable = false)
     private Member member;
 
+    public void setMember(Member member) {
+        this.member = member;
+        member.getPosts().add(this);
+    }
+
     @Builder
     public Post(String title, String content, Category category, Member member) {
         this.title = title;
         this.content = content;
         this.category = category;
-        this.member = member;
+        setMember(member);
     }
 
     public void edit(String title, String content, Category category) {
